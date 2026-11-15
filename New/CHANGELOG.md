@@ -92,6 +92,18 @@
 - Integrated a 5-dimension Multi-Criteria Decision Matrix (MCDM) and competitor novelty analysis table into both LaTeX reports and `concepts-and-diagrams.md`.
 - Synchronized `D2/conceptual-design-working.md`, `D2/rubric-matrix.md`, and `D2/report.md` to reflect Distinction (80--90%+) readiness.
 
+## 2026-11-15 — Deliverable D5 Increment 2 Masterpiece release (v0.3.0)
+
+- **Interactive Scenario Comparison Engine:** Implemented `CarbonService.compare()` and JavaFX modal scenario modeling dialog allowing users to simulate alternative electricity usages against Central Electricity Authority (CEA) v20.0 factors, calculating exact net savings and percentage delta.
+- **Domestic Water Equivalence Calculator:** Contextualized abstract water litres into standard 20L Indian household buckets (`CarbonService.waterBuckets()`), displaying `🪣 2.0 Buckets` tags in ListView and Inspector.
+- **Reversible Action Planning Coach:** Completed Sprint 2 reversible action coaching (`workspace.choose()` and `dismiss()`) respecting protected constraints (medical necessity, late-night safety commutes) without moralising.
+- **Carbon Audit Summary Export:** Implemented one-click formatted textual audit summary preview detailing personal totals, undivided household totals, and verified CEA factor citations.
+- **Tri-Mode Architecture Switcher:** Upgraded header segmented control to tri-mode (`[🏛️ D3 Baseline]`, `[🌱 D4 Inc 1]`, `[✨ D5 Masterpiece]`) enabling live inspection of the evolutionary increments.
+- **Comprehensive Boundary & Partition Testing:** Executed 22 formal BVA test cases and 3 persona scenario walkthroughs (100% PASS); documented in `New/D5/boundary-results.md`.
+- **Agile Scrum Management Pack:** Logged 130.0 total team hours across Sprint 2 (`tasks-and-hours.md`), verified 8-point Definition of Done compliance audit (`definition-of-done.md`), tracked daily burndown (21 pts $\to$ 0 pts) and Sprint 3 backlog (`burndown.md`).
+- **Formal D5 LaTeX Report:** Authored `New/D5/report/main.tex` with native TikZ vector graphics (UML Class, Sequence, Burndown).
+- **Tooling:** Added dedicated launchers `run-d5.bat` and `run-d5.ps1`.
+
 ## 2026-11-13 — Google Material You aesthetic & D3 architectural blueprint pass
 
 - **Google Material You Design System:** Upgraded the application stylesheet (`style.css`) with Google Material 3 tokens: Google Sans / Roboto typography, serene surface palette (`#F8F9FA` / `#FFFFFF`), soft tonal containers (`#E6F4EA` for eco-green, `#E8F0FE` for household blue, `#FEF7E0` for protected choices), and 20px pill buttons.
