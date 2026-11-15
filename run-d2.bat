@@ -10,10 +10,11 @@ set HTML_FILE=%~dp0New\D2\prototype\index.html
 
 where python >nul 2>&1
 if %ERRORLEVEL% equ 0 (
-    echo Starting local web server on port 8080...
-    start "" http://localhost:8080
-    python -m http.server 8080 --directory New\D2\prototype
+    echo [INFO] Starting local HTTP server on port 8080 in background...
+    start /min "FootprintLens_D2_Server" python -m http.server 8080 --directory New\D2\prototype
+    timeout /t 1 >nul
+    start "" "http://localhost:8080"
 ) else (
-    echo Opening prototype directly in your default web browser...
+    echo [INFO] Python not found. Opening prototype directly in browser...
     start "" "%HTML_FILE%"
 )
