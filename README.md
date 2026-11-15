@@ -73,10 +73,14 @@ java -cp "New/application/build/classes;New/application/build/test-classes" in.c
 ---
 
 ### F. Run the Interactive D2 Low-Fidelity Prototype
+Double-click **`run-d2.bat`** in this root directory or run:
 ```powershell
-python -m http.server 8080 --directory New/D2/prototype
+.\run-d2.bat
 ```
-Open [`http://localhost:8080`](http://localhost:8080) in your web browser.  
+*(Or in PowerShell: `.\run-d2.ps1`)*
+
+*(Alternatively, double-click `New/D2/prototype/index.html` directly in File Explorer, or run `python -m http.server 8080 --directory New/D2/prototype`)*
+
 To run the automated prototype test suite:
 ```powershell
 node --test New/D2/prototype/prototype-logic.test.mjs    # 8/8 tests pass

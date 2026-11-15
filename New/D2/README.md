@@ -9,23 +9,25 @@
 
 ## 1. Quick Start: How to Run the D2 Lo-Fi Prototype
 
-The D2 interactive prototype is an accessible, web-based low-fidelity simulation of **Concept A: Contextual Choice Coach**. It implements pure client-side ES modules and accessible HTML/CSS.
+The D2 interactive prototype is an accessible, web-based low-fidelity simulation of **Concept A: Contextual Choice Coach**.
 
-### Step 1: Start the Local HTTP Server
-Because modern browsers enforce CORS restrictions on ES modules (`import`/`export`), the prototype must be served over HTTP:
+### Method A: Single-Click Launcher (Recommended)
+Double-click **`run-d2.bat`** in the repository root or run:
+```powershell
+.\run-d2.bat
+```
+*(Or in PowerShell: `.\run-d2.ps1`)*  
+*Automatically starts the local server and launches the prototype in your default browser.*
 
-From the workspace root directory (`c:\Users\arnav\Downloads\COMP2300`):
+### Method B: Open Directly in Any Browser (Zero Server Needed)
+You can now double-click **`New/D2/prototype/index.html`** in Windows File Explorer or open it directly in Chrome, Edge, or Firefox!
+Thanks to the unified `bundle.js`, the prototype executes with **zero CORS restrictions** even when loaded directly over the `file:///` protocol.
+
+### Method C: Run via Python HTTP Server
 ```powershell
 python -m http.server 8080 --directory New/D2/prototype
 ```
-
-*(Alternatively, navigate to `New/D2/prototype` and run `python -m http.server 8080`)*
-
-### Step 2: Open in Your Web Browser
-Open your browser and navigate to:
-```text
-http://localhost:8080
-```
+Navigate to [`http://localhost:8080`](http://localhost:8080).
 
 ---
 
