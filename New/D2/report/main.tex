@@ -26,6 +26,7 @@
 \setlength{\parskip}{0.55em}
 \newcommand{\status}[1]{\textbf{\color{brand}[#1]}}
 \newcommand{\code}[1]{\texttt{#1}}
+\providecommand{\rupee}{\text{INR~}}
 
 % TikZ Flowchart Styles
 \tikzset{
@@ -362,16 +363,52 @@ The visual style deliberately avoids high-fidelity graphics, saturated palettes,
   
   \item \textbf{P1: Describe It (Quantity Input):} Accepts numerical quantity. The unit is strictly owned and displayed by the category (e.g., kWh, litres, passenger-km, kg) via a dedicated, styled read-only \code{<output>} element to prevent incompatible calculations. Input supports decimal values and the standard keyboard \code{Enter} key. Missing, negative, or $>10^6$ values trigger immediate, non-destructive validation announcements.
   
-  \item \textbf{P2: See the Result (Universal Result State):} The universal evaluation checkpoint. Displays the calculated estimate ($120.288\text{ kg CO}_2$) or an explicit ``Estimate unavailable'' notification. Crucially, it renders a familiar contextual equivalence (e.g. \emph{Variable cost context: \rupee 1,344.00}) and links to P3 (Assumptions), P4 (Realistic Action), P6 (Shared Total), and P1 (Edit Quantity).
+  \item \textbf{P2: See the Result (Universal Result State):} The universal evaluation checkpoint. Displays the calculated estimate ($120.288\text{ kg CO}_2$) or an explicit ``Estimate unavailable'' notification. Crucially, it renders a familiar contextual equivalence (e.g. \emph{Variable cost context: \rupee 1,344.00}) and links to P3 (Assumptions), P4 (Realistic Action), P6 (Shared Total), and P1 (Edit Quantity) (Figure~\ref{fig:p2_p4_wireframe}).
   
   \item \textbf{P3: Inspect Assumptions (Provenance Transparency):} Renders an evidence table detailing Activity Name, User Quantity, Stored Scope, Factor Value ($0.716\text{ kg CO}_2\text{/kWh}$), Factor Source (D1 fixture), Reference Year (2026 illustrative), Geography (India), and Calculation Formula. Explicitly highlights evidence boundaries.
   
-  \item \textbf{P4: Choose an Action (Constraint-Aware Decision):} Displays a realistic, non-preachy next step. When the routine was flagged as \emph{protected} on P0, the \emph{Choose}, \emph{Defer}, and \emph{Not Feasible} buttons are gracefully disabled, accompanied by an explicit status notice: ``\emph{Action decisions are disabled because this activity is marked protected or necessary.}''
+  \item \textbf{P4: Choose an Action (Constraint-Aware Decision):} Displays a realistic, non-preachy next step. When the routine was flagged as \emph{protected} on P0, the \emph{Choose}, \emph{Defer}, and \emph{Not Feasible} buttons are gracefully disabled, accompanied by an explicit status notice: ``\emph{Action decisions are disabled because this activity is marked protected or necessary.}'' (Figure~\ref{fig:p2_p4_wireframe}).
   
   \item \textbf{P5: Unknown Estimate (Category Boundary):} Dedicated recovery route for categories lacking verified conversion factors (e.g., delivery packaging, circular repair). Explains what evidence is missing and affirms that keeping a descriptive record is valuable without fabricating false carbon offsets.
   
   \item \textbf{P6: Shared Total Boundary (Communal Protection):} Features a visual boundary diagram demonstrating that a communal household total does not equal or imply an individual's personal share. Offers a non-destructive ``Back to result'' route.
 \end{itemize}
+
+\begin{figure}[ht]
+\centering
+\small
+\begin{tikzpicture}[
+  wireframe/.style={rectangle, draw=branddark, fill=white, minimum width=15cm, minimum height=6.2cm, inner sep=0.3cm},
+  header/.style={rectangle, fill=branddark, text=white, minimum width=14.4cm, minimum height=0.7cm, font=\scriptsize\bfseries},
+  sidebar/.style={rectangle, fill=brandlight, draw=brand!40, minimum width=3.4cm, minimum height=4.8cm, text width=3.2cm, font=\tiny},
+  panelbox/.style={rectangle, fill=white, draw=brand!70, minimum width=10.6cm, minimum height=4.8cm, text width=10.2cm, font=\scriptsize}
+]
+  \node[wireframe] (shell) {};
+  \node[header, below=0.1cm of shell.north] (top) {FOOTPRINT LENS: D2 Working Prototype \hfill [Illustrative Design Only]};
+  \node[sidebar, below left=0.2cm and 0.1cm of top.south west, anchor=north west] (side) {
+    \textbf{Journey Route:}\\[0.4em]
+    [ ] P0: Start a record\\
+    [ ] P1: Describe quantity\\
+    [*] P2: See result\\
+    [ ] P3: Assumptions\\
+    [*] P4: Realistic action\\
+    [ ] P5: Unknown estimate\\
+    [ ] P6: Shared total\\[0.8em]
+    \underline{[ Reset Prototype ]}
+  };
+  \node[panelbox, below right=0.2cm and 0.2cm of top.south east, anchor=north east] (mainp) {
+    \textbf{\color{brand}STATE P2/P4: RESULT ROUTER \& CONSTRAINT-PROTECTED ACTION}\\[0.2em]
+    \textbf{Illustrative Footprint: 120.288 kg CO$_2$} \hfill {\tiny Context: \rupee 1,344.00 (Tariff slab 2)}\\[0.4em]
+    \fbox{\tiny Inspect Assumptions (P3)} \quad \fbox{\tiny Shared Total Boundary (P6)} \quad \fbox{\tiny Edit Quantity (P1)}\\[0.6em]
+    \rule{9.8cm}{0.4pt}\\[0.4em]
+    \textbf{Constraint Status:} $\blacksquare$ \textbf{Marked Protected (Rohan: Late-night shift travel)}\\
+    \emph{\tiny Status notice: Action suggestions are disabled because this activity is marked protected or necessary.}\\
+    \fbox{\color{gray}\textbf{Choose action (Disabled)}} \quad \fbox{\color{gray}\textbf{Defer (Disabled)}} \quad \fbox{\textbf{Back to result (P2)}}
+  };
+\end{tikzpicture}
+\caption{Wireframe Layout for Panels P2 and P4 (Result Routing and Constraint-Protected Action Decision)}
+\label{fig:p2_p4_wireframe}
+\end{figure}
 
 \subsection{Accessibility, Technical Feasibility and Verification}
 The prototype incorporates comprehensive accessibility engineering:
