@@ -1,0 +1,144 @@
+\documentclass[10pt,a4paper,twocolumn]{article}
+\usepackage[a4paper,top=1.45cm,bottom=1.45cm,left=1.55cm,right=1.55cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\columnsep}{0.68cm}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{1.5pt}
+\setlength{\emergencystretch}{2em}
+\setlist{nosep,leftmargin=*}
+\titleformat{\section}{\normalsize\bfseries}{\thesection.}{0.4em}{}
+\titlespacing*{\section}{0pt}{6pt}{2pt}
+\urlstyle{same}
+\newcommand{\doi}[1]{\href{https://doi.org/#1}{doi:\,\nolinkurl{#1}}}
+\renewcommand{\arraystretch}{1.08}
+
+\title{\vspace{-1.25em}\Large\bfseries Designing Useful Carbon-Footprint Feedback for Urban India}
+\author{\normalsize COMP2300: Software Design and Development Project\\[-1pt]
+\small Deliverable 1 --- Literature Review}
+\date{\small October 2026}
+
+\begin{document}
+\twocolumn[
+\maketitle
+\vspace{-1.2em}
+\begin{abstract}
+\small
+Personal carbon-footprint tools turn everyday activities into emissions estimates, but a number alone may not help users decide what to change. This review synthesises evidence on Indian household footprints, calculator design, tracking apps and eco-feedback in HCI. It argues that the central design challenge is to make estimates legible and recommendations feasible in users' circumstances, and that existing work leaves open how this should work in the shared, constrained households of urban India. It closes with four design challenges and three research questions examined in the accompanying interview analysis.
+\vspace{0.4em}
+\end{abstract}
+]
+
+\section{Introduction}
+Carbon-footprint calculators can make the climate impact of transport, home energy, food and consumption visible, but usefulness depends on more than a total: users must understand where an estimate comes from and which actions are realistically open to them. This matters for urban students and young adults, whose choices depend on budgets, shared accommodation, family decisions and transport. The review draws on the brief's starter papers and further peer-reviewed work on calculators, tracking apps and eco-feedback design, and asks what is established, what is suggestive, and what follows for an India-specific tool.
+
+\section{Why context matters}
+Lee et al.\ link household-consumption surveys to a global supply-chain database to estimate footprints across India, showing that they vary across places and households \cite{lee2021}; one generic baseline cannot describe every user. Evidence on Indian students mostly concerns awareness. Dash et al.\ surveyed 180 postgraduates at one Odisha state university and found that 54\% had low carbon-footprint awareness, with awareness strongly correlated with self-reported practices ($r=0.92$) \cite{dash2023}; in a cross-sectional study of 131 Delhi college students only 38\% said they knew the term ``carbon footprint'', although greater sustainability knowledge was associated with more sustainable diets \cite{gandhi2025}. The vocabulary of footprints may itself be unfamiliar, and people estimate carbon quantities poorly relative to familiar metrics such as calories or distance \cite{grinstein2018}, yet self-reported correlations from single institutions cannot show that an interface changes behaviour.
+
+Scope is a second issue. Shi and Yin map a field in which footprints include emissions embodied in goods and services \cite{shi2021}, and Koide et al.\ show that consumer segments and indirect consumption matter in Japan \cite{koide2019}, though Japanese categories should not be transferred to India unvalidated. A tool should state what an estimate includes and adapt categories and units to users.
+
+\section{From calculating to enabling change}
+Mulrow et al.\ evaluated 31 online calculators and found wide variation in scope, features and regional or product-specific customisation \cite{mulrow2019}; feature richness alone does not show better decisions. Of 4,245 users of one widely used calculator, 91\% found it valuable for knowledge and 78\% for motivation, but only 23\% said it gave them the information needed to change their lives \cite{collins2020}. Delivering a number is easier than delivering guidance.
+
+Tracking-app evidence needs careful reading. Calculators such as the WWF Footprint Calculator and myclimate give one-time assessments, whereas tracking apps give repeated feedback \cite{hoffmann2024}. Hoffmann et al.\ had 216 German university students log consumption in four domains; app-computed emissions of their \emph{planned} consumption fell 22.5\% overall, from 12.0\% for mobility (marginally significant) to 34.7\% for household activities \cite{hoffmann2024}. Effects were domain-specific with almost no cross-domain effects, domain-level self-estimates did not correlate with the app's feedback, and green self-efficacy amplified the effect while strong green self-identity weakened it. These are intended changes over two rounds in a short interval, not observed behaviour; the sample is not Indian, and skipped items were filled with German averages. Lasarov et al.\ followed 210 participants over three waves, applying feedback and goal-activating appeals to food and mobility; goal activation affected emissions differently across domains, and the evidence pointed to spillover between domains \cite{lasarov2024}, in contrast to the near-absence of cross-domain effects above. The two studies share authors, and the first used a German sample, so they are not independent confirmation. Feedback can help, but conditionally: showing a high-impact activity does not make an alternative affordable, accessible or acceptable. The design question is how to connect an estimate to an achievable next step. Because response varied with self-efficacy and green self-identity \cite{hoffmann2024}, it is worth testing whether newcomers and experienced users need different entry points and levels of detail.
+
+\begin{table*}[t]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Design challenges derived from the literature, and where the interview analysis examines each.}
+\label{tab:challenges}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{4.3cm} p{5.6cm} X}
+\toprule
+\textbf{Design challenge (analysis link)} & \textbf{Evidence base} & \textbf{Implication for the tool}\\
+\midrule
+Legible, localised estimates (S1, S2; RQ1) & \cite{lee2021,gandhi2025,grinstein2018,mohanty2023,shi2021,koide2019,hoffmann2024}: regional variation; unfamiliar terms; poor carbon estimates; mixed evidence on units; scope; German defaults & Plain units (INR, buckets, bus trips) beside kg\,CO$_2$e, framed as comparisons; regional grid factors; visible assumptions\\
+Feasible, non-moralising action (L3) & \cite{collins2020,hoffmann2024,brynjarsdottir2012}: 23\% felt equipped; weak mobility effect & Compare achievable alternatives; mark safety- or work-locked choices; no judgmental scores\\
+Low-effort, sustained use (S3; RQ2) & \cite{hoffmann2024,froehlich2010,kok2021}: effortful tracking; few behaviour studies & Presets, defaults, short offline check-ins; simple and detailed views; language options; test whether progress feedback helps\\
+Shared households (L1, L2; RQ3) & \cite{froehlich2012,tiefenbeck2019}: formative, Western; feedback worked without bill responsibility; no Indian evidence & Shared totals before individual shares; no unsupported attribution\\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\section{Interactive technology and engagement}
+HCI adds a design perspective. Froehlich et al.\ surveyed 44 HCI and 89 environmental-psychology papers and found that few HCI eco-feedback studies measured behaviour change \cite{froehlich2010}, so a novel interface is not evidence of effect. Mohanty et al.'s hypothetical ride-hailing surveys and car-rental study (US participants) found that emissions information raised green choices, but raw CO$_2$ by weight outperformed relatable equivalencies, sequestration equivalencies such as trees worked least well, people responded to differences between options rather than absolute values, and most could not say what ``100 pounds of CO$_2$'' meant \cite{mohanty2023}. Which units work is therefore unsettled, and the authors flag personalised messaging and recommendation as an opportunity. Brynjarsd\'ottir et al.\ criticise persuasive sustainability work for framing sustainability as optimisation of simple metrics, casting technology as objective arbiter \cite{brynjarsdottir2012}; for students this argues against moralising scores. Household evidence is sparser: formative work on water eco-feedback (a survey of 651 North American respondents and interviews with ten families) probed competition, privacy and domestic integration \cite{froehlich2012}, but not hostels, rented flats or multi-generational Indian homes. Real-time shower feedback did cut hotel guests' energy use by 11.4\% although they did not pay for it \cite{tiefenbeck2019}, which is relevant to landlord-paid and split-bill housing.
+
+Sustained use cannot be assumed. Kok and Barendregt's interviews with Dutch calculator users describe differing patterns of adoption \cite{kok2021}. Hoffmann et al.\ note that tracking is effortful, leaves gaps when users stop entering data, and that linking smart meters or transaction data raises privacy questions \cite{hoffmann2024}. A one-unit ``Foodprint'' seminar lowered students' estimated dietary footprint by 14\% against a comparison group \cite{malan2020}, but this concerns food and a course, not an app. None of this shows that streaks or gamification retain users; they should be tested.
+
+\section{Synthesis and research gap}
+Footprints vary by context and the vocabulary may be unfamiliar to Indian students \cite{lee2021,gandhi2025,grinstein2018}; communicating an estimate does not by itself equip users to act \cite{mulrow2019,collins2020}, and which units work best is unsettled \cite{mohanty2023}; and tracking-app studies show feedback and goal appeals affecting emissions unevenly across domains \cite{hoffmann2024,lasarov2024}, with Hoffmann et al.'s evidence concerning planned rather than observed change and none yet from Indian students. The sources reviewed also leave four gaps relevant to the brief. No source reviewed tests localised units, regional grid factors or language with Indian students, or how a tool should treat choices constrained by safety, shift work, heat or housing, although mobility feedback was weakest in \cite{hoffmann2024}. None examines shared or landlord-paid housing in India, where individual bills may not exist. Linking to smart meters appears only as future work \cite{hoffmann2024}, and cooking fuel and waste are barely covered. These are gaps in the sources reviewed, not claims about the whole literature. Table~\ref{tab:challenges} turns them into design challenges and shows where the interview analysis (themes S1--S3, L1--L3) examines each.
+
+\section{Research questions}
+\begin{quote}
+\small
+\textbf{How can an India-specific, personalised carbon-footprint tool help urban Indian students and young adults understand their lifestyle-related emissions and make informed, feasible choices to reduce them?}
+\end{quote}
+\textbf{RQ1:} Do tangible equivalents (INR, water buckets, bus trips), shown alongside kg\,CO$_2$e and as comparisons between alternatives, improve understanding of an estimate compared with kg\,CO$_2$e alone? \textbf{RQ2:} Which preset inputs reduce logging effort while preserving useful estimates? \textbf{RQ3:} How can a shared-household view show communal use without implying unsupported precision about individuals?
+
+\begin{thebibliography}{16}
+\scriptsize
+\setlength{\itemsep}{0.5pt}
+
+\bibitem{lee2021}
+J. Lee, O. Taherzadeh, and K. Kanemoto. 2021. The scale and drivers of carbon footprints in households, cities and regions across India. \emph{Global Environmental Change} 66, 102205. \doi{10.1016/j.gloenvcha.2020.102205}
+
+\bibitem{dash2023}
+D. S. Dash, P. Pradhan, and R. Kumar. 2023. Awareness and practices of carbon footprint reduction: A survey among postgraduate students. \emph{Current Research Journal of Social Sciences and Humanities} 6(1), 122--131. \doi{10.12944/CRJSSH.6.1.10}
+
+\bibitem{gandhi2025}
+N. Gandhi and P. Shukla. 2025. Dietary sustainability knowledge and practice among college-going students in Delhi. \emph{Journal of Nutrition and Food Security} 10(4), 583--593. \doi{10.18502/jnfs.v10i4.20014}
+
+\bibitem{grinstein2018}
+A. Grinstein, E. Kodra, S. Chen, S. Sheldon, and O. Zik. 2018. Carbon innumeracy. \emph{PLOS ONE} 13(5), e0196282. \doi{10.1371/journal.pone.0196282}
+
+\bibitem{shi2021}
+S. Shi and J. Yin. 2021. Global research on carbon footprint: A scientometric review. \emph{Environmental Impact Assessment Review} 89, 106571. \doi{10.1016/j.eiar.2021.106571}
+
+\bibitem{koide2019}
+R. Koide, M. Lettenmeier, S. Kojima, V. Toivio, A. Amellina, and L. Akenji. 2019. Carbon footprints and consumer lifestyles: An analysis of lifestyle factors and gap analysis by consumer segment in Japan. \emph{Sustainability} 11(21), 5983. \doi{10.3390/su11215983}
+
+\bibitem{mulrow2019}
+J. Mulrow, K. Machaj, J. Deanes, and S. Derrible. 2019. The state of carbon footprint calculators: An evaluation of calculator design and user interaction features. \emph{Sustainable Production and Consumption} 18, 33--40. \doi{10.1016/j.spc.2018.12.001}
+
+\bibitem{collins2020}
+A. Collins, A. Galli, T. Hipwood, and A. Murthy. 2020. Living within a One Planet reality: The contribution of personal Footprint calculators. \emph{Environmental Research Letters} 15, 025008. \doi{10.1088/1748-9326/ab5f96}
+
+\bibitem{hoffmann2024}
+S. Hoffmann, W. Lasarov, H. Reimers, and M. Trabandt. 2024. Carbon footprint tracking apps. Does feedback help reduce carbon emissions? \emph{Journal of Cleaner Production} 434, 139981. \doi{10.1016/j.jclepro.2023.139981}
+
+\bibitem{lasarov2024}
+W. Lasarov, S. Hoffmann, R. Mai, and J. Schleich. 2024. Carbon footprint tracking apps: The spillover effects of feedback and goal-activating appeals. \emph{Ecological Economics} 226, 108354. \doi{10.1016/j.ecolecon.2024.108354}
+
+\bibitem{froehlich2010}
+J. Froehlich, L. Findlater, and J. Landay. 2010. The design of eco-feedback technology. In \emph{Proc.\ CHI '10}, 1999--2008. ACM. \doi{10.1145/1753326.1753629}
+
+\bibitem{mohanty2023}
+V. Mohanty, A. Filipowicz, N. Bravo, S. Carter, and D. A. Shamma. 2023. Save a tree or 6 kg of CO$_2$? Understanding effective carbon footprint interventions for eco-friendly vehicular choices. In \emph{Proc.\ CHI '23}. ACM. \doi{10.1145/3544548.3580675}
+
+\bibitem{brynjarsdottir2012}
+H. Brynjarsd\'ottir, M. H\r{a}kansson, J. Pierce, E. Baumer, C. DiSalvo, and P. Sengers. 2012. Sustainably unpersuaded: How persuasion narrows our vision of sustainability. In \emph{Proc.\ CHI '12}, 947--956. ACM. \doi{10.1145/2207676.2208539}
+
+\bibitem{froehlich2012}
+J. Froehlich, L. Findlater, M. Ostergren, et al. 2012. The design and evaluation of prototype eco-feedback displays for fixture-level water usage data. In \emph{Proc.\ CHI '12}. ACM. \url{https://ubicomplab.cs.washington.edu/publications/ecofeedback}
+
+\bibitem{tiefenbeck2019}
+V. Tiefenbeck, A. W\"orner, S. Sch\"ob, E. Fleisch, and T. Staake. 2019. Real-time feedback promotes energy conservation in the absence of volunteer selection bias and monetary incentives. \emph{Nature Energy} 4(1), 35--41. \doi{10.1038/s41560-018-0282-1}
+
+\bibitem{kok2021}
+A. Kok and J. Barendregt. 2021. Understanding the adoption, use, and effects of ecological footprint calculators among Dutch citizens. \emph{Journal of Cleaner Production} 326, 129341. \doi{10.1016/j.jclepro.2021.129341}
+
+\bibitem{malan2020}
+H. Malan et al. 2020. Impact of a scalable, multi-campus ``Foodprint'' seminar on college students' dietary intake and dietary carbon footprint. \emph{Nutrients} 12(9), 2890. \doi{10.3390/nu12092890}
+
+\end{thebibliography}
+
+\end{document}

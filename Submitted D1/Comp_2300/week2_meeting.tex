@@ -1,0 +1,167 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{times}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{COMP2300 -- Carbon Footprint Tool (Urban India)}
+\fancyhead[R]{Week 2 Meeting Notes}
+\fancyfoot[C]{\thepage}
+
+\setlist[itemize]{leftmargin=1.5em, itemsep=2pt, topsep=2pt}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{Week 2 Group Meeting Notes}}\\[4pt]
+    {\large COMP2300: Software Design and Development Project}\\[2pt]
+    \textit{Carbon Footprint Awareness and Reduction Tool -- Urban India Context}\\[10pt]
+    \textbf{Date:} 22/10/26 \quad \textbf{Time:} 16.00 hrs \quad \textbf{Location:} In Person\\
+    \textbf{Attendees:} Arnav, Hiranya, Keshav \quad \textbf{Apologies:} None\\
+    \textbf{Minute-taker:} Keshav
+\end{center}
+
+\vspace{10pt}
+\hrule
+\vspace{14pt}
+
+\section*{1. General Overview}
+
+Second proper group meeting of the project. Main goal this week was to close out Deliverable 1 properly before we move into planning the next phase, and to take stock of how week 1 went now that the dust has settled a bit. We went through the whole D1 package together on a call and then again in person to double check nothing had slipped through -- literature review, thematic analysis with the personas and scenarios, and the JTBD and epics document. Everyone had a chance to read through all three before the meeting so this wasn't the first time any of us were seeing the final versions.
+
+Overall feeling in the room was pretty good. There's obviously still some loose ends (there always are) but we think we're in a solid spot going into the deadline, and we're reasonably confident the three documents tell a consistent story when read together rather than feeling like three separate bits of homework stapled together.
+
+\vspace{6pt}
+\subsection*{What we covered today}
+\begin{itemize}
+    \item Full read-through and cross-check of the literature review, thematic analysis and JTBD/epics documents against each other
+    \item Confirmed the reference numbering and citation usage lines up properly across documents
+    \item Checked personas and scenarios match up consistently with the epics and traceability tables
+    \item Talked through a couple of open design decisions we'd left hanging from last week
+    \item Looked back at how week 1 went as a team, what worked and what didn't
+    \item Sketched out the plan for the next couple of weeks, including early technical setup
+    \item Had a quick breather and acknowledged we've actually kept this up for two weeks straight now, which feels good
+\end{itemize}
+
+\vspace{10pt}
+\section*{2. Deliverable 1: Review and Cross-Checking}
+
+We went through D1 end to end together rather than just trusting that each person's section was fine on its own. Specifically we:
+
+\begin{itemize}
+    \item Re-read the literature review against the final reference list to make sure every citation actually says what we claim it says
+    \item Checked that the thematic analysis quotes word-for-word match the original transcripts
+    \item Walked through each persona and scenario and confirmed they're internally consistent (right transcripts, right themes, no contradictions between documents)
+    \item Checked the JTBD statement is within the word limit and doesn't accidentally describe a feature instead of a goal
+    \item Made sure the epics and MoSCoW prioritisation actually line up with the scenarios as currently written, not an earlier draft of them
+    \item Flagged a couple of small inconsistencies between document versions and agreed how to resolve them
+    \item Did a general formatting pass -- fonts, margins, page size, title pages -- to make sure we're not going to lose easy marks on presentation
+\end{itemize}
+
+This cross-checking took longer than any of us expected, but it felt worth it. It's easy for things to subtly fall out of sync when you're all working on your own bit of the document in parallel, and today's session was really about catching that before it becomes a problem for marking.
+
+\vspace{6pt}
+\subsection*{Decisions made}
+\begin{itemize}
+    \item Agreed on a consistent position on how shared household resource use (e.g. geysers, lounge ACs) is attributed, and made sure this is reflected the same way across the thematic analysis and the epics
+    \item Agreed we'll keep a single shared reference list across the whole D1 submission going forward, rather than each section numbering citations independently
+    \item Agreed to do a final formatting and proofreading pass as a team the evening before submission, rather than relying on one person to catch everything
+\end{itemize}
+
+\vspace{10pt}
+\section*{3. Individual Contributions}
+
+\subsection*{Arnav}
+\begin{itemize}
+    \item Took the lead on coding the first batch of interview transcripts (CF1--CF4) during first-pass open coding
+    \item Drafted the methodology section for the thematic analysis, including the write-up of our coding workflow
+    \item Did a full pass checking citations and reference numbering across all three D1 documents
+    \item Helped resolve the household attribution discussion and wrote up the agreed wording
+    \item Coordinating the GitLab repository setup ahead of D2/D3
+\end{itemize}
+
+\subsection*{Hiranya}
+\begin{itemize}
+    \item Led coding of the second batch of transcripts (CF5--CF7) and contributed to the candidate code clustering discussion
+    \item Took primary responsibility for drafting personas P3 and P4, including checking their details against the transcripts
+    \item Cross-checked the scenario-to-epic traceability table against the latest version of the scenarios
+    \item Kept the group's shared document organised and flagged version mismatches between drafts before they became a bigger issue
+    \item Started looking into JavaFX UI libraries and basic project scaffolding ahead of the technical setup work
+\end{itemize}
+
+\subsection*{Keshav}
+\begin{itemize}
+    \item Led coding of the third batch of transcripts (CF8--CF10) and contributed to theme naming and the central organising concept for each theme
+    \item Drafted the Job to Be Done statement and the forces table, including a few redrafts to keep it under the word limit and feature-neutral
+    \item Worked through the epics and MoSCoW prioritisation, including writing up the tensions and decisions section
+    \item Did the formatting pass on the combined PDF (fonts, margins, title pages, section headings)
+    \item Looking into assumed values we're using for the prototype calculations (grid factor, bus factor etc.) and how we'll present these as clearly labelled assumptions
+\end{itemize}
+
+\vspace{6pt}
+\textit{As always, everyone read and commented on everyone else's sections rather than working in silos, so the above is really about where the main effort went this week rather than a strict division of labour.}
+
+\vspace{10pt}
+\section*{4. Reflection on Week 1}
+
+Looking back at week 1 as a team:
+
+\begin{itemize}
+    \item \textbf{Went well:} splitting the transcripts into batches for first-pass coding worked nicely and saved a lot of time, while still having everyone read and second-code the full set so nobody missed the bigger picture
+    \item \textbf{Went well:} we caught quite a few small inconsistencies early just by talking things through together rather than assuming the other person's section was fine
+    \item \textbf{Could improve:} drafting the literature review and the thematic analysis in separate files for a while caused some small mismatches in wording and research question phrasing that we had to go back and fix
+    \item \textbf{Could improve:} we probably should have agreed on a single shared reference numbering convention earlier, rather than fixing it after the fact
+    \item \textbf{Action for going forward:} work from a single shared document/repo from the start of each deliverable rather than merging separate drafts later
+\end{itemize}
+
+\vspace{10pt}
+\section*{5. Future Plan and Implementation Plan}
+
+With D1 essentially wrapped up, the focus now shifts towards D2 and getting the technical side of the project moving. Rough plan agreed today:
+
+\subsection*{Short term (next 1--2 weeks)}
+\begin{itemize}
+    \item Finish any last formatting and proofreading on D1 and submit
+    \item Set up the GitLab repository properly, including basic project structure for the JavaFX application
+    \item Agree on our Scrum/Agile working practices as a team (sprint length, stand-up cadence, how we'll track tasks)
+    \item Start translating the Must Have epics (E1--E5) into smaller user stories with concrete acceptance criteria
+    \item Begin early design concept sketches for D2, building on the personas and scenarios from D1
+\end{itemize}
+
+\subsection*{Medium term (leading into D2/D3)}
+\begin{itemize}
+    \item Pick one design concept to take forward and build a low-fidelity prototype
+    \item Draft our evaluation plan, including recruiting another COMP2300 group for testing
+    \item Start thinking about the technical architecture and any UML diagrams we'll need
+    \item Fix the MVP category subset and the minimum language set, as flagged in the D1 limitations section
+\end{itemize}
+
+\subsection*{Longer term}
+\begin{itemize}
+    \item Build out increments 1 through 3, keeping testing and project management documentation up to date as we go
+    \item Revisit the features we deliberately left out of the MVP (e.g. automatic data collection, per-person attribution) once the conditions we set for them are actually met
+    \item Keep our research questions in view so we're actually testing them during the final evaluation, not just quoting them in the report
+\end{itemize}
+
+We agreed to keep next week's meeting a bit shorter and more focused, now that D1 is basically done and we can shift energy towards actually building something.
+
+\vspace{10pt}
+\section*{6. Team Note}
+
+Small thing, but worth writing down: this is officially two weeks of solid, consistent group work now, and honestly it's gone better than any of us expected going in. Nobody's dropped the ball, meetings have actually happened on time, and the cross-checking today showed that we're all genuinely paying attention to each other's work rather than just doing our own bit and hoping for the best. Took a few minutes at the end of the meeting to just acknowledge that and grab a coffee before heading off. Good sign for the rest of the module.
+
+\vspace{14pt}
+\hrule
+\vspace{8pt}
+
+\textbf{Next meeting focus:} D2 kick-off -- user stories, design concepts, GitLab setup
+
+\end{document}

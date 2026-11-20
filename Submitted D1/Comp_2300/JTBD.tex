@@ -1,0 +1,384 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper, margin=1.6cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[most]{tcolorbox}
+\usepackage{cite}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+
+% ---------- Palette (matches the Interview Analysis document) ----------
+\definecolor{cNavy}{RGB}{24, 43, 73}
+\definecolor{cTerracotta}{RGB}{184, 74, 45}
+\definecolor{cTeal}{RGB}{19, 108, 120}
+\definecolor{cForest}{RGB}{38, 102, 75}
+\definecolor{cPlum}{RGB}{98, 59, 112}
+\definecolor{cGrey}{RGB}{90, 98, 110}
+\definecolor{bgSand}{RGB}{251, 248, 243}
+\definecolor{bgIce}{RGB}{242, 247, 250}
+\definecolor{bgMint}{RGB}{241, 248, 244}
+\definecolor{bgRow}{RGB}{247, 249, 251}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=cNavy,
+    citecolor=cTerracotta,
+    urlcolor=cTeal,
+    pdftitle={COMP2300 D1: Job to Be Done, Epics and MoSCoW Prioritisation - Version 1.0}
+}
+
+\titleformat{\section}{\large\bfseries\color{cNavy}}{\thesection.}{0.5em}{}[\vspace{2pt}{\color{cTerracotta}\titlerule[0.8pt]}]
+\titleformat{\subsection}{\normalsize\bfseries\color{cTerracotta}}{\thesubsection}{0.4em}{}
+\titlespacing*{\section}{0pt}{0.85em}{0.35em}
+\titlespacing*{\subsection}{0pt}{0.55em}{0.2em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\textcolor{gray}{COMP2300 Deliverable 1: JTBD, Epics and Prioritisation (Urban India)}}
+\fancyhead[R]{\footnotesize\textcolor{gray}{Arnav, Hiranya, Keshav}}
+\fancyfoot[C]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtcolorbox{jtbdbox}[1]{
+    enhanced, colback=bgSand, colframe=cTerracotta, boxrule=0.8pt, leftrule=4pt, arc=3pt,
+    left=8pt, right=8pt, top=5pt, bottom=5pt, before skip=5pt, after skip=5pt,
+    fonttitle=\bfseries\small\color{white}, colbacktitle=cTerracotta, title={#1}
+}
+\newtcolorbox{notecard}[1]{
+    enhanced, colback=bgIce, colframe=cTeal, boxrule=0pt, leftrule=3.5pt, arc=2pt,
+    left=7pt, right=7pt, top=4pt, bottom=4pt, before skip=4pt, after skip=4pt,
+    fonttitle=\bfseries\small\color{cNavy}, colbacktitle=bgIce, title={#1},
+    attach title to upper={\par\vspace{1.5pt}}
+}
+\newtcolorbox{tensioncard}[1]{
+    enhanced, colback=bgMint, colframe=cForest, boxrule=0pt, leftrule=3.5pt, arc=2pt,
+    left=7pt, right=7pt, top=4pt, bottom=4pt, before skip=4pt, after skip=4pt,
+    fonttitle=\bfseries\small\color{cForest}, colbacktitle=bgMint, title={#1},
+    attach title to upper={\par\vspace{1.5pt}}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.28em}
+\renewcommand{\arraystretch}{1.16}
+\setlist[itemize]{leftmargin=1.3em, itemsep=1pt, topsep=1pt}
+\setlist[enumerate]{leftmargin=1.3em, itemsep=1pt, topsep=1pt}
+\newcommand{\co}{CO$_2$e}
+
+\begin{document}
+
+% =========================================================================
+% TITLE BANNER
+% =========================================================================
+\begin{tcolorbox}[enhanced, colback=cNavy, colframe=cNavy, arc=3pt, left=8pt, right=8pt, top=7pt, bottom=7pt]
+\begin{center}
+    {\Large\bfseries\textcolor{white}{COMP2300: Software Design and Development Project}}\\[0.2em]
+    {\large\bfseries\textcolor{bgSand}{Deliverable 1 (D1): Job to Be Done, Epics and MoSCoW Prioritisation}}\\[0.15em]
+    {\small\itshape\textcolor{white}{Topic 1: Carbon Footprint Awareness and Reduction Tool (Urban India Context)}}\\[0.35em]
+    {\footnotesize\textcolor{white}{\textbf{Version:} 1.0 (final) \quad|\quad \textbf{Date:} October 2026 \quad|\quad \textbf{Authors:} Arnav (\texttt{am31g25@soton.ac.uk}), Hiranya (\texttt{hm8g25@soton.ac.uk}), Keshav (\texttt{ks3e25@soton.ac.uk})}}
+\end{center}
+\end{tcolorbox}
+
+% =========================================================================
+% 1. SCOPE AND EVIDENCE BASE
+% =========================================================================
+\section{Scope and Evidence Base}
+This part of D1 turns the problem-space findings into a single stakeholder goal (the Job to Be Done, JTBD) and a prioritised set of epics. It builds directly on the companion documents: the literature review (gaps and design challenges) \cite{lee2021, collins2020, hoffmann2024, froehlich2010}, and the interview analysis, whose semantic themes (\texttt{S1}--\texttt{S3}), latent themes (\texttt{L1}--\texttt{L3}), personas (\texttt{P1}--\texttt{P6}), scenarios (\texttt{SC1}--\texttt{SC4}) and research questions (\texttt{RQ1}--\texttt{RQ3}) are referenced by ID throughout. An epic is a high-level statement of stakeholder value, not a feature specification; epics are split into user stories with testable acceptance criteria in later deliverables.
+
+The supplied transcripts (\texttt{CF1}--\texttt{CF10}) are coursework materials treated as stakeholder accounts \cite{cf1, cf2, cf3, cf4, cf5, cf6, cf7, cf8, cf9, cf10}. They are not a representative sample, so priorities below are reasoned judgements about what the evidence supports, not measured demand.
+
+% =========================================================================
+% 2. JOB TO BE DONE
+% =========================================================================
+\section{Job to Be Done}
+\begin{jtbdbox}{JTBD statement (52 words)}
+\textit{When I want to understand how my everyday life affects the climate, I want to see which activities matter most and which realistic alternatives are open to me, so that I can make changes that fit my budget, safety, schedule and household without being misled or blamed for constraints I cannot control.}
+\end{jtbdbox}
+The statement describes the outcome a stakeholder is hiring a tool to achieve; it names no interface, metric or feature. It also stops at \emph{informed, feasible change} rather than guaranteed emission reduction, because the reviewed evidence shows intended rather than observed change \cite{hoffmann2024} and few behavioural measurements in eco-feedback work \cite{froehlich2010}.
+
+\subsection{Forces shaping the job}
+{\footnotesize
+\rowcolors{2}{bgRow}{white}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{2.2cm}|>{\raggedright\arraybackslash}p{9.0cm}|>{\raggedright\arraybackslash}p{4.4cm}|}
+\hline
+\rowcolor{cNavy}
+\textcolor{white}{\textbf{Force}} & \textcolor{white}{\textbf{What the evidence shows}} & \textcolor{white}{\textbf{Source}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{cNavy}
+\textcolor{white}{\textbf{Force}} & \textcolor{white}{\textbf{What the evidence shows}} & \textcolor{white}{\textbf{Source}} \\
+\hline
+\endhead
+\hline
+\endfoot
+\textbf{Push} (why change) & Estimates in kg \co{} or raw bill ``units'' are not picturable; shared or landlord-paid bills hide individual use; only 23\% of calculator users felt equipped to act. & \texttt{S1}, \texttt{L1}; \texttt{CF1, CF2, CF7, CF10} \cite{cf1, cf2, cf7, cf10}; \cite{collins2020} \\
+\hline
+\textbf{Pull} (what is wanted) & Something picturable, in rupees and kilos; the easiest realistic change; a simple weekly or monthly view. & \texttt{S1}, \texttt{S3}; \texttt{CF5, CF6, CF7} \cite{cf5, cf6, cf7} \\
+\hline
+\textbf{Anxiety} (what could go wrong) & Being scored or lectured; numbers built on foreign grid factors or hidden assumptions; effort and mobile-data cost. & \texttt{L3}, \texttt{S1}, \texttt{S3}; \texttt{CF1, CF2, CF4, CF5} \cite{cf1, cf2, cf4, cf5}; \cite{brynjarsdottir2012} \\
+\hline
+\textbf{Habit} (what already exists) & Low-carbon routines go unrecognised (bucket baths, pressure cookers, repair); safety- and heat-driven choices are treated as habits; shared-bill apathy persists. & \texttt{L1}--\texttt{L3}; \texttt{CF4, CF8, CF9} \cite{cf4, cf8, cf9} \\
+\hline
+\end{longtable}
+}
+
+\subsection{Justification}
+Each clause of the statement answers a theme rather than a preference. ``Understand how my everyday life affects the climate'' and ``which activities matter most'' respond to the units and localisation disconnect (\texttt{S1}) and the overlooked consumption categories (\texttt{S2}): an estimate must be legible, and its scope must be honest about what it omits \cite{lee2021, shi2021, grinstein2018}. ``Realistic alternatives'' and ``constraints I cannot control'' reflect \texttt{L3}: curfew cabs, night-shift travel and daytime sleep cooling are structurally locked, and showing an unaffordable or unsafe alternative does not make it achievable \cite{collins2020}. ``Household'' and ``blamed'' reflect \texttt{L1} and \texttt{L2}, where shared bills diffuse responsibility and one member often carries the monitoring work. ``Misled'' captures the trust requirement behind \texttt{S1} and \texttt{S3}, and the cautions against moralising sustainability metrics \cite{brynjarsdottir2012}. Finally, the phrase ``budget, safety, schedule'' keeps the goal usable across the three stakeholder groups, from hostel students (\texttt{P1}, \texttt{P2}) and shift or hybrid workers (\texttt{P3}, \texttt{P4}) to household managers and elders (\texttt{P5}, \texttt{P6}). The job underlies all four scenarios (\texttt{SC1}--\texttt{SC4}).
+
+% =========================================================================
+% 3. PRIORITISATION METHOD
+% =========================================================================
+\section{Prioritisation Method}
+Epics are ranked with MoSCoW using explicit decision rules, applied in order, so each placement has a stated reason.
+\begin{itemize}
+    \item \textbf{Must have:} the core journey in at least two scenarios cannot be completed without it, \emph{or} omitting it would make the tool misleading, exclusionary or harmful to users in the evidence (for example, scoring a safety-locked trip).
+    \item \textbf{Should have:} it clearly strengthens comparison, repeat use or shared action, and a usable first journey still exists without it.
+    \item \textbf{Could have:} it adds depth or personalisation, or depends on data or design decisions not yet settled.
+    \item \textbf{Won't have (this version):} it is not required by \texttt{SC1}--\texttt{SC4}, or it needs data, privacy handling or calculation methods that cannot yet be justified. Each exclusion states a revisit condition.
+\end{itemize}
+This keeps the first release aligned with the proposed MVP scope: offline local storage, short onboarding, preset logging for a limited set of categories, sourced regional factors, and comparisons between feasible alternatives.
+
+% =========================================================================
+% 4. EPICS TABLE
+% =========================================================================
+\section{Epics and MoSCoW Prioritisation}
+Traceability entries give the supporting themes, personas and scenarios. Acceptance directions are deliberately high level; they set the direction for D2--D6 stories rather than replace them.
+
+{\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{2.6cm}|>{\raggedright\arraybackslash}p{5.1cm}|>{\raggedright\arraybackslash}p{3.0cm}|>{\raggedright\arraybackslash}p{4.9cm}|}
+\hline
+\rowcolor{cNavy}
+\textcolor{white}{\textbf{Epic}} & \textcolor{white}{\textbf{High-level user story}} & \textcolor{white}{\textbf{Traceability}} & \textcolor{white}{\textbf{Acceptance direction and rationale}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{cNavy}
+\textcolor{white}{\textbf{Epic}} & \textcolor{white}{\textbf{High-level user story}} & \textcolor{white}{\textbf{Traceability}} & \textcolor{white}{\textbf{Acceptance direction and rationale}} \\
+\hline
+\endhead
+\hline
+\endfoot
+
+\rowcolor{cTerracotta}\multicolumn{4}{|l|}{\textcolor{white}{\textbf{MUST HAVE: the core journey and its trustworthiness}}} \\
+\hline
+\textbf{E1} Understand my footprint in familiar terms &
+As a user new to carbon footprints, I want to enter a manageable set of everyday activities and see the result in rupees, buckets, fan-hours or trips as well as kg \co{}, so that I can see which areas matter most to me. &
+\texttt{S1}; \texttt{RQ1} \newline \texttt{P1, P3, P5, P6} \newline \texttt{SC1--SC4} &
+A short first assessment can be finished without every field. Each result shows INR or a familiar equivalent beside kg \co{}. Equivalents that illustrate volume or cost, not carbon, are labelled as such. \\
+\hline
+\textbf{E2} See the working behind an estimate &
+As a user who doubts unfamiliar or foreign numbers, I want to see the grid factor, tariff, power draw and limits behind each estimate, so that I can judge how far to trust it for my situation. &
+\texttt{S1, S3} \newline \texttt{P2, P3, P6} \newline \texttt{SC1--SC3} &
+Every estimate opens a plain-language assumptions panel naming source and region. Illustrative values are labelled. Missing inputs give a qualitative result, not a falsely precise figure. \\
+\hline
+\textbf{E3} Find actions that fit my circumstances &
+As a user whose choices are limited by safety, shift work, heat or housing, I want suggestions that respect those limits, so that I get one action I can actually take rather than a lecture. &
+\texttt{L3, S3} \newline \texttt{P1, P3, P4} \newline \texttt{SC2--SC4} &
+A choice can be marked as locked (curfew cab, sleep AC) and is never scored as discretionary. A suggestion can be dismissed as infeasible. The tool offers an easiest next step, not a ranked list of faults. \\
+\hline
+\textbf{E4} See relevant categories and gaps &
+As a user whose footprint extends beyond travel and electricity, I want food, packaging, clothing, devices, water and waste shown where data allow, so that important activities are not hidden. &
+\texttt{S2} \newline \texttt{P1, P3, P4, P5} \newline \texttt{SC1, SC2, SC4} &
+Covered categories are listed and excluded ones are stated, never implied in a total. Categories without defensible data show descriptive records only. The MVP subset is chosen from \texttt{S2} in D2. \\
+\hline
+\textbf{E5} Log briefly, offline, in my language &
+As a user with limited time, data or English, I want to record selected activities in a few taps offline and read results in my language, so that I keep using the tool. &
+\texttt{S3}; \texttt{RQ2} \newline \texttt{P1, P4, P5, P6} \newline \texttt{SC1--SC3} &
+Core logging works offline, unknown fields can be skipped, and results need no \co{} expertise. Tap and time targets are set in D2 and tested via \texttt{RQ2}. English and Hindi are proposed as the minimum language set. \\
+\hline
+
+\rowcolor{cTeal}\multicolumn{4}{|l|}{\textcolor{white}{\textbf{SHOULD HAVE: comparison, repeat use and shared action}}} \\
+\hline
+\textbf{E6} Review change over time &
+As a user who has picked an action or monthly challenge, I want to look back at earlier records, so that I can see whether my circumstances or choices have changed. &
+\texttt{S3} \newline \texttt{P1, P3} \newline \texttt{SC4} &
+Past results can be viewed. Comparisons appear only when inputs are comparable, otherwise the limit is explained. No streaks or scores. \emph{Should, not Must:} evidence on sustained use is weak \cite{froehlich2010, hoffmann2024}. \\
+\hline
+\textbf{E7} Agree shared household actions &
+As a person sharing a hostel, flat or family home, I want shared loads (geyser, lounge AC, water tankers) shown as household totals with collective actions, so that nobody is blamed or has to police the rest. &
+\texttt{L1, L2}; \texttt{RQ3} \newline \texttt{P1, P2, P5, P6} \newline \texttt{SC1, SC2} &
+Shared actions are labelled household-level. Shared loads are not split by person unless inputs support it. Prompts are neutral, and the view adds no monitoring task to one member. Evidence is formative and non-Indian \cite{froehlich2012, tiefenbeck2019}. \\
+\hline
+\textbf{E8} Compare feasible alternatives &
+As a user choosing between options, I want to compare likely impact, cost and practical trade-offs (car or Metro, market or delivery), so that I can choose what suits me. &
+\texttt{S1, L3} \newline \texttt{P3, P5} \newline \texttt{SC3, SC4} &
+Figures appear only when distance, fuel economy, occupancy, fare and sourced factors are available; otherwise the comparison is qualitative. Differences between options are shown, since users respond to differences \cite{mohanty2023}. \\
+\hline
+
+\rowcolor{cPlum}\multicolumn{4}{|l|}{\textcolor{white}{\textbf{COULD HAVE: depth and personalisation}}} \\
+\hline
+\textbf{E9} Control feedback timing &
+As a user with irregular hours, I want to set when and how often I get summaries, so that feedback never disturbs sleep or work. &
+\texttt{L3, S3} \newline \texttt{P4} \newline \texttt{SC3} &
+No unsolicited notifications by default; frequency and quiet windows can be changed or switched off. \emph{Could, because} the MVP core needs no notifications; if any ship, this becomes Must. \\
+\hline
+\textbf{E10} Benchmark against similar local homes &
+As a user surprised by a bill, I want to see my usage beside similar local households, so that I know whether it is typical. &
+\texttt{S1} \newline \texttt{P3} \newline \texttt{SC3} &
+Shown only with a sourced benchmark stating region and household type, otherwise hidden. Regional variation is documented \cite{lee2021}, but a usable benchmark dataset is not yet identified. \\
+\hline
+\textbf{E11} Open a detailed audit view and export &
+As a user who wants to verify the evidence, I want a detailed view of factors and sources and, later, exportable records, so that I can audit results while the simple view stays default. &
+\texttt{S3} \newline \texttt{P2} \newline \texttt{SC2} &
+The simple view remains default for newcomers. The detailed view adds factors and sources. CSV export is deferred unless the core assessment needs it. \\
+\hline
+
+\rowcolor{cGrey}\multicolumn{4}{|l|}{\textcolor{white}{\textbf{WON'T HAVE (this version): excluded with a revisit condition}}} \\
+\hline
+\textbf{E12} Automatic data collection &
+Users might later want smart plugs, utility accounts or order and statement history to feed the tool automatically. &
+\texttt{S3} \newline \texttt{P3} \newline Not needed by \texttt{SC1--SC4} &
+Core assessment and action journey work without devices or accounts (in \texttt{SC3} Rohan sets his own timer). \emph{Revisit when} data sources, consent and privacy handling are defined. \\
+\hline
+\textbf{E13} Public rankings and per-person shares of shared loads &
+Users might want to rank themselves or see each housemate's share of a shared bill. &
+\texttt{L1, L2, L3} \newline \texttt{P5} (tension) &
+Rankings ignore unequal constraints, and shared bills do not reveal individual use. First version shows personal or household progress only. \emph{Revisit when} per-person measurement exists. \\
+\hline
+\textbf{E14} Avoided-emission credits for repair, composting, recycling &
+Users who repair, compost or reuse would like these practices to earn recognised credit. &
+\texttt{S2} \newline \texttt{P2, P5, P6} \newline \texttt{SC1} (descriptive) &
+No defensible method yet. Practices are recorded descriptively and acknowledged, without a carbon figure. \emph{Revisit when} a sourced method is chosen. \\
+\hline
+\end{longtable}
+}
+
+% =========================================================================
+% 5. TRACEABILITY
+% =========================================================================
+\section{Scenario and Persona Traceability}
+\subsection{Scenario-to-epic mapping}
+{\footnotesize
+\rowcolors{2}{bgRow}{white}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{5.2cm}|>{\raggedright\arraybackslash}p{4.4cm}|>{\raggedright\arraybackslash}p{6.0cm}|}
+\hline
+\rowcolor{cNavy}
+\textcolor{white}{\textbf{Scenario}} & \textcolor{white}{\textbf{Must epics}} & \textcolor{white}{\textbf{Supporting epics}} \\
+\hline
+\endhead
+\hline
+\endfoot
+\textbf{SC1} Multi-generational utility conflict (P5, P6) & E1, E2, E4, E5 & E7 (shared view); E14 handled descriptively \\
+\hline
+\textbf{SC2} Exam-week logging and hostel commons (P1, P2) & E1, E2, E3, E4, E5 & E7 (neutral geyser prompt); E11 (audit view); E13 and CSV export excluded \\
+\hline
+\textbf{SC3} Rota-aware shifts and WFH benchmarking (P4, P3) & E2, E3, E4, E5 & E8 (what-if AC reduction); E9 (quiet windows); E10 (benchmark); E12 excluded \\
+\hline
+\textbf{SC4} Commute trade-offs and Scope 3 challenges (P3, P5) & E1, E2, E3, E4 & E6 (monthly challenge); E8 (Trade-Off Comparator) \\
+\hline
+\end{longtable}
+}
+
+\subsection{Persona coverage check}
+Every persona is served by at least one Must epic, and five of six by three or more: \texttt{P1} (E1, E3, E4, E5), \texttt{P2} (E2), \texttt{P3} (E1--E4), \texttt{P4} (E3--E5), \texttt{P5} (E1, E4, E5) and \texttt{P6} (E1, E2, E5). \texttt{P2} is thinly covered because the needs that most distinguish this persona, detailed export (E11) and repair credit (E14), are deferred or excluded. This is accepted knowingly, and the Simple View/Detailed View split keeps the later addition of E11 compatible with the core design.
+
+% =========================================================================
+% 6. RATIONALE AND TRADE-OFFS
+% =========================================================================
+\section{Why These Priorities? Tensions and Decisions}
+The Must epics form the minimum trustworthy loop: understand impact (E1), judge its credibility (E2), find a feasible next step without judgement (E3), see an honest scope (E4) and do all of it with low effort (E5). Without them, the tool would produce either a number users cannot interpret or advice they cannot act on. The Should and Could epics deepen the loop; the Won't epics are excluded either because the scenarios do not need them or because their methods cannot yet be defended. Five tensions shaped the ranking.
+
+\begin{tensioncard}{T1: Recognition versus rigour (E14)}
+\texttt{P2}, \texttt{P5} and \texttt{P6} want existing low-carbon practices recognised. Awarding carbon credits without a defensible method would undermine the transparency demanded by \texttt{S1}. \emph{Decision:} record such practices descriptively (E4) and defer numeric credit.
+\end{tensioncard}
+
+\begin{tensioncard}{T2: Seeing ``their own part'' versus avoiding unsupported attribution (E7, E13)}
+\texttt{P5} wants family members to see their own share, but shared bills cannot support individual attribution (\texttt{L1}). \emph{Decision:} household totals and collective actions first (E7); per-person shares excluded until measurable, and tested via \texttt{RQ3}.
+\end{tensioncard}
+
+\begin{tensioncard}{T3: Protecting rest versus keeping the core small (E9)}
+\texttt{P4} needs quiet periods, yet notifications are not required for the MVP journey. \emph{Decision:} no unsolicited notifications by default, which keeps E9 at Could; any notification feature makes E9 a prerequisite.
+\end{tensioncard}
+
+\begin{tensioncard}{T4: Depth for experts versus simplicity for newcomers (E2, E11)}
+\texttt{P2} wants audit-level transparency; \texttt{P6} has low tolerance for complexity. \emph{Decision:} always-available plain-language assumptions (E2, Must), with the detailed view (E11, Could) layered above a simple default.
+\end{tensioncard}
+
+\begin{tensioncard}{T5: Engagement mechanics versus evidence (E6)}
+Reviewing change over time is intuitively valuable, but the reviewed work reports planned rather than observed change and does not show that streaks or gamification sustain use \cite{hoffmann2024, froehlich2010}. \emph{Decision:} Should, framed as personal review without scores or rankings.
+\end{tensioncard}
+
+% =========================================================================
+% 7. LIMITATIONS AND HAND-OFF
+% =========================================================================
+\section{Limitations and Hand-Off to D2--D6}
+Priorities rest on ten constructed or supplied accounts and on a literature review that identifies gaps in the sources reviewed, not in the whole literature. They are therefore hypotheses about value, to be tested. Later deliverables will (i) split each epic into user stories with measurable acceptance criteria, (ii) fix the MVP category subset, language set and tap or time targets, (iii) use \texttt{RQ1} (units, tested through E1 and E8), \texttt{RQ2} (presets, E5) and \texttt{RQ3} (shared views, E7) to evaluate the highest-risk assumptions, and (iv) revisit the Won't epics only when their stated conditions are met.
+
+% =========================================================================
+% REFERENCES
+% =========================================================================
+\begin{thebibliography}{20}
+\footnotesize
+
+\bibitem{lee2021}
+J. Lee, O. Taherzadeh, and K. Kanemoto. 2021. The scale and drivers of carbon footprints in households, cities and regions across India. \textit{Global Environmental Change} 66 (2021), 102205. DOI: https://doi.org/10.1016/j.gloenvcha.2020.102205
+
+\bibitem{shi2021}
+S. Shi and J. Yin. 2021. Global research on carbon footprint: A scientometric review. \textit{Environmental Impact Assessment Review} 89 (2021), 106571. DOI: https://doi.org/10.1016/j.eiar.2021.106571
+
+\bibitem{grinstein2018}
+A. Grinstein, E. Kodra, S. Chen, S. Sheldon, and O. Zik. 2018. Carbon innumeracy. \textit{PLOS ONE} 13, 5 (2018), e0196282. DOI: https://doi.org/10.1371/journal.pone.0196282
+
+\bibitem{collins2020}
+A. Collins, A. Galli, T. Hipwood, and A. Murthy. 2020. Living within a One Planet reality: The contribution of personal Footprint calculators. \textit{Environmental Research Letters} 15 (2020), 025008. DOI: https://doi.org/10.1088/1748-9326/ab5f96
+
+\bibitem{hoffmann2024}
+S. Hoffmann, W. Lasarov, H. Reimers, and M. Trabandt. 2024. Carbon footprint tracking apps. Does feedback help reduce carbon emissions? \textit{Journal of Cleaner Production} 434 (2024), 139981. DOI: https://doi.org/10.1016/j.jclepro.2023.139981
+
+\bibitem{froehlich2010}
+J. Froehlich, L. Findlater, and J. Landay. 2010. The design of eco-feedback technology. In \textit{Proceedings of CHI '10}, 1999--2008. ACM. DOI: https://doi.org/10.1145/1753326.1753629
+
+\bibitem{mohanty2023}
+V. Mohanty, A. Filipowicz, N. Bravo, S. Carter, and D. A. Shamma. 2023. Save a tree or 6 kg of CO$_2$? Understanding effective carbon footprint interventions for eco-friendly vehicular choices. In \textit{Proceedings of CHI '23}. ACM. DOI: https://doi.org/10.1145/3544548.3580675
+
+\bibitem{brynjarsdottir2012}
+H. Brynjarsdóttir, M. Håkansson, J. Pierce, E. Baumer, C. DiSalvo, and P. Sengers. 2012. Sustainably unpersuaded: How persuasion narrows our vision of sustainability. In \textit{Proceedings of CHI '12}, 947--956. ACM. DOI: https://doi.org/10.1145/2207676.2208539
+
+\bibitem{froehlich2012}
+J. Froehlich, L. Findlater, M. Ostergren, et al. 2012. The design and evaluation of prototype eco-feedback displays for fixture-level water usage data. In \textit{Proceedings of CHI '12}, 2367--2376. ACM. DOI: https://doi.org/10.1145/2207676.2208397
+
+\bibitem{tiefenbeck2019}
+V. Tiefenbeck, A. Wörner, S. Schöb, E. Fleisch, and T. Staake. 2019. Real-time feedback promotes energy conservation in the absence of volunteer selection bias and monetary incentives. \textit{Nature Energy} 4, 1 (2019), 35--41. DOI: https://doi.org/10.1038/s41560-018-0282-1
+
+\bibitem{cf1}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF1: Woman, Age 21, Final-Year Engineering Student, Hostel in Pune}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf2}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF2: Man, Age 29, Hybrid Software Engineer, Lives Alone in Bengaluru}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf3}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF3: Woman, Age 46, Homemaker and Part-Time Accounts Assistant, 3BHK in Noida}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf4}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF4: Man, Age 24, Environmental Science Postgraduate, PG in Chennai (Village Roots in Tamil Nadu)}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf5}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF5: Woman, Age 34, Marketing Manager, Lives with Partner in Thane, Commutes to Andheri}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf6}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF6: Man, Age 38, Bank Officer, Lives with Wife and Daughter in Gurugram}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf7}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF7: Woman, Age 19, First-Year Undergraduate, Shares Flat with Two Roommates in Kolkata}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf8}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF8: Man, Age 58, Retired Railway Official, Lives with Wife and Grandson in Lucknow}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf9}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF9: Woman, Age 31, Staff Nurse on Rotating Night Shifts, Lives Alone in Hyderabad}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf10}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF10: Man, Age 26, Freelance Graphic Designer, Co-Living Space in Ahmedabad}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\end{thebibliography}
+
+\end{document}

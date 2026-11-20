@@ -1,0 +1,143 @@
+\documentclass[10pt,a4paper,twocolumn]{article}
+%%%%%%%
+%   Use the other file this is the first draft
+%%%%
+% Page layout: two columns, with enough space for comfortable reading
+\usepackage[a4paper,top=1.65cm,bottom=1.65cm,left=1.65cm,right=1.65cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage{microtype}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+
+\setlength{\columnsep}{0.72cm}
+\setlength{\parindent}{1em}
+\setlength{\parskip}{2.5pt}
+\setlength{\emergencystretch}{2em}
+\setlist{nosep,leftmargin=*}
+\titleformat{\section}{\normalsize\bfseries}{\thesection.}{0.45em}{}
+\titleformat{\subsection}{\small\bfseries}{\thesubsection}{0.4em}{}
+\titlespacing*{\section}{0pt}{8pt}{3pt}
+\titlespacing*{\subsection}{0pt}{6pt}{2pt}
+\renewcommand{\arraystretch}{1.12}
+\urlstyle{same}
+
+\title{\vspace{-1.3em}\Large\bfseries Personalised Carbon-Footprint Feedback for Urban Indian Students and Young Adults}
+\author{\normalsize COMP2300: Software Design and Development Project\\[-1pt]
+\small Deliverable 1 --- Literature Review}
+\date{\small October 2026}
+
+\begin{document}
+
+% Full-width title block, followed by the two-column review
+\twocolumn[
+\maketitle
+\vspace{-1.2em}
+\begin{abstract}
+\small
+Personal carbon-footprint tools aim to make the climate impacts of everyday choices more visible. However, estimates and recommendations need to be understandable, relevant to users' circumstances, and feasible to act on. This review considers research on Indian household emissions, footprint calculators, student-focused interventions, and carbon-tracking feedback. It identifies an opportunity to investigate how an India-specific tool could help urban students and young adults understand their estimated emissions and choose realistic reduction actions, without overstating the effects of feedback on long-term behaviour.
+\vspace{0.8em}
+\end{abstract}
+]
+
+\section{Introduction}
+Personal carbon-footprint tools translate everyday activities into estimates of greenhouse-gas emissions. They can help users connect decisions about transport, home energy, food, and consumption with their environmental impact. Yet displaying a total alone does not necessarily explain which activities matter most or what a person could realistically change.
+
+This is especially important when a tool is intended for users with different budgets, living arrangements, routines, and access to lower-carbon alternatives. A useful design therefore needs to consider both the quality of the estimate and how the result is communicated. This review brings together evidence on the Indian context, calculator design, and feedback-based interventions to identify a focused research opportunity.
+
+\section{Indian Context and Lifestyle Differences}
+An India-specific tool should not assume that users have the same consumption patterns or choices as users in other countries. Lee, Taherzadeh and Kanemoto analysed household consumption across 623 Indian districts, illustrating substantial spatial and socioeconomic variation in household carbon footprints \cite{lee2021}. This supports treating location and household circumstances as relevant context, rather than applying a single universal lifestyle baseline.
+
+Research on students in India also provides a useful starting point for understanding carbon-footprint awareness. Khandelwal et al. studied students' attitudes towards carbon footprints at a private Indian university \cite{khandelwal2019}. This is relevant to a student-focused tool, although survey findings about attitudes should not be treated as proof that a particular interface will cause behaviour change.
+
+The wider literature also shows that footprint accounting can include both emissions associated directly with activities and emissions embedded in goods and services. Shi and Yin's scientometric review maps the breadth of global carbon-footprint research \cite{shi2021}. Koide et al.'s analysis of Japanese consumer lifestyles highlights the value of examining differences between consumer segments and the contribution of indirect emissions \cite{koide2019}. However, findings from Japan cannot be assumed to transfer directly to urban India. Together, these studies suggest that the tool should make its estimates and assumptions understandable, while allowing users' contexts to influence the feedback they receive.
+
+\section{From Awareness to Actionable Feedback}
+A calculator can increase awareness by turning activities into an emissions estimate, but awareness is only one part of the behaviour-change problem. Mulrow et al.'s evaluation of online carbon-footprint calculators considered how calculator design and user interaction vary across existing tools \cite{mulrow2019}. Collins et al. found that many users regarded personal footprint calculators as useful for knowledge or motivation, while fewer felt they had enough information to make changes \cite{collins2020}. This points to a practical design question: after showing a footprint, does the tool help users identify an achievable next step?
+
+Intervention studies offer promising but qualified evidence. Malan et al. evaluated a multi-campus food-footprint seminar and reported changes in students' dietary intake and estimated dietary carbon footprint \cite{malan2020}. This was an educational intervention, not a test of a carbon-tracking app, so its results should not be attributed to app features. Hoffmann et al. studied a carbon-footprint tracking app with 216 university students in Germany. Their results indicated differences across consumption domains and reductions in planned emissions, but do not establish that an app reliably produces lasting real-world reductions \cite{hoffmann2024}. A related study found that feedback and goal-activating appeals can have different spillover effects depending on the consumption domain \cite{lasarov2024}.
+
+Taken together, this work suggests that feedback may be useful, but its effects should not be assumed to be uniform. A tool could therefore explain the estimated impact of an activity, compare plausible alternatives, and offer a small number of relevant actions instead of presenting a score without guidance. It should also communicate uncertainty and avoid implying that every suggested action is equally available to every user.
+
+\section{Engagement and Continued Use}
+A further challenge is sustaining users' interest beyond an initial calculation. Kok and Barendregt's interviews with calculator users explored different patterns of use and motivations, highlighting that users do not all engage with ecological-footprint tools in the same way \cite{kok2021}. Research on residential energy feedback also provides a broader evidence base for considering how information is presented through digital interfaces \cite{chatzigeorgiou2021}.
+
+These findings justify investigating whether progress displays, goals, and feedback are useful to the intended audience. They do not, by themselves, prove that points, streaks, or gamification will improve long-term engagement. Such features should be treated as design options to evaluate with users, not as guaranteed solutions.
+
+\section{Synthesis and Research Gap}
+\begin{table}[t]
+\centering
+\small
+\begin{tabularx}{\columnwidth}{>{\bfseries}p{1.65cm} X}
+\toprule
+\textbf{Theme} & \textbf{Implication for the research} \\
+\midrule
+Indian variation & Account for location, household circumstances, and realistic access to alternatives \cite{lee2021,khandelwal2019}.\\
+Calculator design & Make estimates and assumptions understandable, and provide guidance beyond a single total \cite{mulrow2019,collins2020}.\\
+Feedback effects & Examine domain-specific, feasible actions without assuming feedback guarantees lasting reductions \cite{hoffmann2024,lasarov2024}.\\
+Engagement & Explore whether progress feedback supports continued use for different user types \cite{kok2021,chatzigeorgiou2021}.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The literature provides evidence on Indian household variation, calculator design, educational interventions, and carbon-tracking feedback. However, these strands do not fully establish how an India-specific tool should combine understandable estimates, context-sensitive recommendations, and ongoing progress feedback for urban students and young adults. In particular, the effectiveness and perceived feasibility of recommendations may depend on circumstances such as living arrangements, budget, diet, and transport availability.
+
+The design opportunity is therefore not simply to calculate a footprint, nor to assume that a more engaging interface will automatically change behaviour. It is to investigate how a tool can help users interpret their estimated emissions, compare feasible alternatives, and monitor actions in a way that fits their circumstances.
+
+\section{Research Question}
+\begin{quote}
+\small
+\textbf{How can an India-specific, personalised carbon-footprint tool help urban Indian students and young adults understand their lifestyle-related emissions and make informed, feasible choices to reduce their carbon footprint?}
+\end{quote}
+
+This question can be explored through three supporting questions:
+\begin{itemize}
+    \item How can the impacts of everyday activities be communicated clearly and meaningfully?
+    \item How should feedback reflect differences in users' living arrangements, budgets, diets, and transport options?
+    \item How can recommendations and progress displays support users in identifying and monitoring realistic actions?
+\end{itemize}
+
+\begin{thebibliography}{10}
+\small
+\setlength{\itemsep}{1.5pt}
+
+\bibitem{lee2021}
+J. Lee, O. Taherzadeh, and K. Kanemoto. 2021. The scale and drivers of carbon footprints in households, cities and regions across India. \emph{Global Environmental Change} 66, 102205. \url{https://doi.org/10.1016/j.gloenvcha.2020.102205}
+
+\bibitem{shi2021}
+S. Shi and J. Yin. 2021. Global research on carbon footprint: A scientometric review. \emph{Environmental Impact Assessment Review} 89, 106571. \url{https://doi.org/10.1016/j.eiar.2021.106571}
+
+\bibitem{khandelwal2019}
+M. Khandelwal, V. Jain, A. Sharma, and S. Bansal. 2019. Students' attitude toward carbon footprints of a leading private university in India. \emph{Management and Economics Research Journal} 5, 7606. \url{https://doi.org/10.18639/MERJ.2019.735006}
+
+\bibitem{koide2019}
+R. Koide, M. Lettenmeier, S. Kojima, V. Toivio, A. Amellina, and L. Akenji. 2019. Carbon footprints and consumer lifestyles: An analysis of lifestyle factors and gap analysis by consumer segment in Japan. \emph{Sustainability} 11(21), 5983. \url{https://doi.org/10.3390/su11215983}
+
+\bibitem{mulrow2019}
+J. Mulrow, K. Machaj, J. Deanes, and M. G. Derrible. 2019. The state of carbon footprint calculators: An evaluation of calculator design and user interaction features. \emph{Sustainable Production and Consumption}. \url{https://doi.org/10.1016/j.spc.2018.12.001}
+
+\bibitem{collins2020}
+A. Collins, G. Galli, T. Hipwood, and A. Murthy. 2020. Living within a One Planet reality: The contribution of personal Footprint calculators. \emph{Environmental Research Letters}. \url{https://doi.org/10.1088/1748-9326/ab5f96}
+
+\bibitem{malan2020}
+H. Malan et al. 2020. Impact of a scalable, multi-campus ``Foodprint'' seminar on college students' dietary intake and dietary carbon footprint. \emph{Nutrients} 12(9), 2890. \url{https://doi.org/10.3390/nu12092890}
+
+\bibitem{hoffmann2024}
+C. Hoffmann, M. Lasarov, and M. Reimers. 2024. Carbon footprint tracking apps. Does feedback help reduce carbon emissions? \emph{Journal of Cleaner Production} 434, 139981. \url{https://doi.org/10.1016/j.jclepro.2023.139981}
+
+\bibitem{lasarov2024}
+M. Lasarov et al. 2024. Carbon footprint tracking apps: The spillover effects of feedback and goal-activating appeals. \emph{Ecological Economics} 226, 108354. \url{https://doi.org/10.1016/j.ecolecon.2024.108354}
+
+\bibitem{kok2021}
+A. Kok and J. Barendregt. 2021. Understanding the adoption, use, and effects of ecological footprint calculators among Dutch citizens. \emph{Journal of Cleaner Production} 326, 129341. \url{https://doi.org/10.1016/j.jclepro.2021.129341}
+
+\bibitem{chatzigeorgiou2021}
+E. Chatzigeorgiou and G. Andreou. 2021. A systematic review on feedback research for residential energy behavior change through mobile and web interfaces. \emph{Renewable and Sustainable Energy Reviews} 135, 110187. \url{https://doi.org/10.1016/j.rser.2020.110187}
+\end{thebibliography}
+
+\end{document}

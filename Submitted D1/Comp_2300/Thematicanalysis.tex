@@ -1,0 +1,554 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper, margin=1.6cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage[most]{tcolorbox}
+\usepackage{cite}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+
+% =========================================================================
+% MODERN EDITORIAL COLOUR PALETTE (CLAUDE-INSPIRED ACADEMIC THEME)
+% =========================================================================
+\definecolor{cNavy}{RGB}{24, 43, 73}       % Deep Academic Navy
+\definecolor{cTerracotta}{RGB}{184, 74, 45}% Warm Terracotta Accent
+\definecolor{cTeal}{RGB}{19, 108, 120}     % Rich Teal
+\definecolor{cForest}{RGB}{38, 102, 75}    % Deep Sage/Forest Green
+\definecolor{cPlum}{RGB}{98, 59, 112}      % Muted Plum
+\definecolor{bgSand}{RGB}{251, 248, 243}   % Warm Cream Background
+\definecolor{bgIce}{RGB}{242, 247, 250}    % Soft Blue-Teal Tint
+\definecolor{bgMint}{RGB}{241, 248, 244}   % Soft Mint Tint
+\definecolor{bgRow}{RGB}{247, 249, 251}    % Alternating Table Row
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=cNavy,
+    citecolor=cTerracotta,
+    urlcolor=cTeal,
+    pdftitle={COMP2300 D1: Thematic Analysis, Personas and Scenarios}
+}
+
+% =========================================================================
+% SECTION HEADINGS & WRAP-SAFE CALLOUT CARDS
+% =========================================================================
+\titleformat{\section}{\large\bfseries\color{cNavy}}{\thesection.}{0.5em}{}[\vspace{2pt}{\color{cTerracotta}\titlerule[0.8pt]}]
+\titleformat{\subsection}{\normalsize\bfseries\color{cTerracotta}}{\thesubsection}{0.4em}{}
+\titlespacing*{\section}{0pt}{0.8em}{0.32em}
+\titlespacing*{\subsection}{0pt}{0.5em}{0.2em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\footnotesize\textcolor{gray}{COMP2300 Deliverable 1: Problem Space Analysis (Urban India)}}
+\fancyhead[R]{\footnotesize\textcolor{gray}{Arnav, Hiranya, Keshav}}
+\fancyfoot[C]{\footnotesize\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Wrap-Safe Semantic Theme Card
+\newtcolorbox{semanticcard}[1]{
+    enhanced,
+    colback=bgIce,
+    colframe=cTeal,
+    boxrule=0pt,
+    leftrule=3.5pt,
+    arc=2pt,
+    left=7pt, right=7pt, top=5pt, bottom=5pt,
+    before skip=4.5pt, after skip=4.5pt,
+    before upper={\textbf{\small\textcolor{cNavy}{#1}}\par\vspace{2pt}}
+}
+
+% Wrap-Safe Latent Theme Card
+\newtcolorbox{latentcard}[1]{
+    enhanced,
+    colback=bgMint,
+    colframe=cForest,
+    boxrule=0pt,
+    leftrule=3.5pt,
+    arc=2pt,
+    left=7pt, right=7pt, top=5pt, bottom=5pt,
+    before skip=4.5pt, after skip=4.5pt,
+    before upper={\textbf{\small\textcolor{cForest}{#1}}\par\vspace{2pt}}
+}
+
+% Wrap-Safe Synthesis Box
+\newtcolorbox{synthesisbox}[1]{
+    enhanced,
+    colback=bgSand,
+    colframe=cTerracotta,
+    boxrule=0.8pt,
+    leftrule=4pt,
+    arc=3pt,
+    left=8pt, right=8pt, top=5pt, bottom=5pt,
+    before skip=5pt, after skip=5pt,
+    before upper={\textbf{\small\textcolor{cTerracotta}{#1}}\par\vspace{2pt}}
+}
+
+% Wrap-Safe Scenario Card
+\newtcolorbox{scenariocard}[2]{
+    enhanced,
+    colback=white,
+    colframe=#1,
+    boxrule=0.7pt,
+    leftrule=4pt,
+    arc=2pt,
+    left=7pt, right=7pt, top=5pt, bottom=5pt,
+    before skip=4.5pt, after skip=4.5pt,
+    before upper={\textbf{\small\textcolor{#1}{#2}}\par\vspace{2pt}\hrule\vspace{3pt}}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.26em}
+\renewcommand{\arraystretch}{1.15}
+\setlist[itemize]{leftmargin=1.3em, itemsep=1pt, topsep=1pt}
+\setlist[enumerate]{leftmargin=1.3em, itemsep=1pt, topsep=1pt}
+
+\begin{document}
+
+% =========================================================================
+% TITLE BANNER
+% =========================================================================
+\begin{tcolorbox}[enhanced, colback=cNavy, colframe=cNavy, arc=3pt, left=8pt, right=8pt, top=7pt, bottom=7pt]
+\begin{center}
+    {\Large\bfseries\textcolor{white}{COMP2300: Software Design and Development Project}}\\[0.2em]
+    {\large\bfseries\textcolor{bgSand}{Deliverable 1 (D1): Interview Analysis, Personas and Scenarios}}\\[0.15em]
+    {\small\itshape\textcolor{white}{Topic 1: Carbon Footprint Awareness and Reduction Tool (Urban India Context)}}\\[0.35em]
+    {\footnotesize\textcolor{white}{\textbf{Version:} 1.6 \quad|\quad \textbf{Date:} October 2026 \quad|\quad \textbf{Authors:} Arnav (\texttt{arnav@soton.ac.uk}), Hiranya (\texttt{hiranya@soton.ac.uk}), Keshav (\texttt{keshav@soton.ac.uk})}}
+\end{center}
+\end{tcolorbox}
+
+% =========================================================================
+% SECTION 1: METHODOLOGY & CODING WORKFLOW
+% =========================================================================
+\section{Reflexive Thematic Analysis Methodology}
+We analysed the ten provided interview transcripts (\texttt{CF1} to \texttt{CF10}) \cite{cf1, cf2, cf3, cf4, cf5, cf6, cf7, cf8, cf9, cf10} using Braun and Clarke's six-phase reflexive thematic analysis approach \cite{braun2006, braun2019}. The transcripts cover urban and semi-urban Indian residents aged 19 to 58 across Pune, Bengaluru, Noida, Chennai and rural Tamil Nadu, Thane and Mumbai, Gurugram, Kolkata, Lucknow, Hyderabad, and Ahmedabad. Because the module team constructed \texttt{CF1} to \texttt{CF10} as illustrative interviews for the challenge brief rather than recorded field data \cite{cf1, cf10}, we treat our findings as grounded design hypotheses that connect published research \cite{lee2021, khandelwal2019} to our software requirements.
+
+\textbf{Manual Six-Phase Workflow and Collaborative Reflexivity:} We coded all transcripts manually without automated text software so we could stay close to the domestic and cultural details in each account. Following Braun and Clarke's six phases \cite{braun2006, braun2019}, we: (1) familiarised ourselves with all ten interviews through repeated reading; (2) generated initial first-pass open codes by dividing lead annotation across the team (\textbf{Arnav} led \texttt{CF1} to \texttt{CF4}, \textbf{Hiranya} led \texttt{CF5} to \texttt{CF7}, and \textbf{Keshav} led \texttt{CF8} to \texttt{CF10}, with all three members reading and annotating the full set); (3) collated codes into candidate clusters; (4) reviewed candidate themes against the full dataset; (5) defined each theme around a single central organising concept rather than a topic summary \cite{braun2019}; and (6) wrote this report. Rather than treating coding as a mechanical inter-rater reliability exercise, we used collaborative reflexive discussion \cite{braun2019} to examine how our own assumptions shaped our reading of the transcripts (for instance, recognising that late-night cab rides in \texttt{CF1} and \texttt{CF9} reflect gendered safety constraints rather than casual convenience).
+
+% =========================================================================
+% SECTION 2: FIRST-PASS CODING MATRIX
+% =========================================================================
+\section{First-Pass Open Coding and Theme Traceability Matrix}
+
+{\footnotesize
+\rowcolors{2}{bgRow}{white}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{3.0cm}|>{\raggedright\arraybackslash}p{7.1cm}|>{\raggedright\arraybackslash}p{3.7cm}|>{\raggedright\arraybackslash}p{1.9cm}|}
+\hline
+\rowcolor{cNavy}
+\textcolor{white}{\textbf{Transcript Source}} & \textcolor{white}{\textbf{First-Pass Open Codes Extracted}} & \textcolor{white}{\textbf{Candidate Code Clusters}} & \textcolor{white}{\textbf{Themes}} \\
+\hline
+\endfirsthead
+\hline
+\rowcolor{cNavy}
+\textcolor{white}{\textbf{Transcript Source}} & \textcolor{white}{\textbf{First-Pass Open Codes Extracted}} & \textcolor{white}{\textbf{Candidate Code Clusters}} & \textcolor{white}{\textbf{Themes}} \\
+\hline
+\endhead
+\hline
+\endfoot
+
+\textbf{CF1} \cite{cf1} (W, 21, Pune Hostel Student) & 
+\texttt{15-min walk}; \texttt{bus/auto}; \texttt{10:30pm curfew cab}; \texttt{kg CO2e meaningless}; \texttt{cab = 12 bus trips}; \texttt{mess paneer/dal}; \texttt{3am exam delivery plastic}; \texttt{hidden induction}; \texttt{shared geyser left on}; \texttt{tanker water}; \texttt{bucket vs shower}; \texttt{2-tap input}; \texttt{Hindi/Marathi}; \texttt{tiny data plan}. & 
+Everyday Physical Units; Curfew Safety Need; Hostel Geyser Apathy; Quick Offline Input. & 
+\textbf{S1, S2, S3, L1, L3} \\
+\hline
+
+\textbf{CF2} \cite{cf2} (M, 29, Bengaluru WFH Engineer) & 
+\texttt{Shared office cab}; \texttt{avoids crowded Metro}; \texttt{1pm to 9pm WFH AC}; \texttt{bill shock}; \texttt{Bengaluru 1BHK benchmark}; \texttt{Swiggy/Zomato plastic}; \texttt{avocado/quinoa vs local}; \texttt{Amazon box-in-box}; \texttt{fast fashion}; \texttt{order history import}; \texttt{no lecturing}; \texttt{smart-plug AC timer}. & 
+Opaque Bill Units; Local Flat Benchmark; Delivery \& Apparel Waste; Non-Judgmental Timer. & 
+\textbf{S1, S2, S3, L3} \\
+\hline
+
+\textbf{CF3} \cite{cf3} (W, 46, Noida 3BHK Homemaker) & 
+\texttt{Electricity + LPG + inverter}; \texttt{2 ACs all day}; \texttt{sole energy manager}; \texttt{ignored by teens}; \texttt{pressure cooker saves gas}; \texttt{app veg plastic \& fridge spoilage}; \texttt{terrace compost vs kabadiwala}; \texttt{tanker water}; \texttt{bucket vs 20-min teen shower}; \texttt{shared family view}; \texttt{Hindi}. & 
+One-Person Policing; Generational Frugality; App Grocery Spoilage; Shared Family View. & 
+\textbf{S1, S2, S3, L2} \\
+\hline
+
+\textbf{CF4} \cite{cf4} (M, 24, Chennai Env. Sci. Postgrad) & 
+\texttt{6km second-hand cycle}; \texttt{bus/share auto in rain}; \texttt{Western factors wrong}; \texttt{Indian coal grid}; \texttt{transparent assumptions}; \texttt{millets vs processed}; \texttt{dairy trade-offs}; \texttt{wood/dung vs LPG}; \texttt{repair/reuse culture}; \texttt{CSV export vs simple view}; \texttt{Tamil/Hindi/English}. & 
+Coal-Grid Transparency; Rural to Urban Cooking; Uncredited Repair Culture; Two-Level Interface. & 
+\textbf{S1, S2, S3, L3} \\
+\hline
+
+\textbf{CF5} \cite{cf5} (W, 34, Thane Marketing Manager) & 
+\texttt{Thane to Andheri train}; \texttt{auto/Uber in rain}; \texttt{partner scooter}; \texttt{night AC}; \texttt{online grocery vans/plastic vs Saturday market}; \texttt{bubble-wrap guilt}; \texttt{balcony compost}; \texttt{non-judgmental easiest swap}; \texttt{shared couple tracking}. & 
+Delivery Van vs.\ Market Walk; Packaging Guilt; Easiest Habit Swap; Joint Couple Tracking. & 
+\textbf{S1, S2, L2, L3} \\
+\hline
+
+\textbf{CF6} \cite{cf6} (M, 38, Gurugram Bank Officer) & 
+\texttt{25km petrol car traffic}; \texttt{wife takes Metro}; \texttt{shared school run}; \texttt{2 split ACs Apr to Sept}; \texttt{LPG rotis + induction}; \texttt{RO purifier}; \texttt{daughter questions plastic packets}; \texttt{drop 1 car trip}; \texttt{rupees and kilos}; \texttt{family chart}. & 
+Car vs.\ Metro Comparison; Dual Rupee \& Kilo Metric; Child Curiosity; Shared Family Chart. & 
+\textbf{S1, S2, L2} \\
+\hline
+
+\textbf{CF7} \cite{cf7} (W, 19, Kolkata Shared-Flat Student) & 
+\texttt{Walk/bus/shared auto/tram}; \texttt{Uber too costly}; \texttt{fans + rice cooker}; \texttt{landlord pays electricity = no awareness}; \texttt{2-hr morning water buckets}; \texttt{binned leftover delivery food}; \texttt{stall plastic}; \texttt{free tool}; \texttt{minimal typing}; \texttt{weekly visual}; \texttt{Bengali}. & 
+Landlord Paid Utilities; Leftover Food Waste; Free Low-Effort Logging; Bengali Language Need. & 
+\textbf{S2, S3, L1} \\
+\hline
+
+\textbf{CF8} \cite{cf8} (M, 58, Lucknow Retired Official) & 
+\texttt{Scooter + morning walk}; \texttt{misses train}; \texttt{no car}; \texttt{fans + LPG pressure cooker}; \texttt{no AC in June heat}; \texttt{inverter trouble}; \texttt{bucket garden watering}; \texttt{gardener mixes waste}; \texttt{rose compost}; \texttt{plain Hindi}; \texttt{bucket/fan-hour cost}; \texttt{grandson help}. & 
+Low-Carbon Elder Habits; Physical Unit Trust; Plain Hindi Access; Grandson Tech Support. & 
+\textbf{S1, S3, L2} \\
+\hline
+
+\textbf{CF9} \cite{cf9} (W, 31, Hyderabad Night-Shift Nurse) & 
+\texttt{Night-shift safety cab (no buses)}; \texttt{day Metro + auto}; \texttt{weekly rota changes}; \texttt{11am daytime sleep AC}; \texttt{exhausted forgets lights}; \texttt{canteen/delivery packets}; \texttt{steel tiffin}; \texttt{rota quiet-day nudges}; \texttt{mute sleep alerts}; \texttt{1 weekly message}. & 
+Daytime Sleep AC; Night Transit Safety; Shift Exhaustion; Rota-Based Quiet Nudges. & 
+\textbf{S2, S3, L3} \\
+\hline
+
+\textbf{CF10} \cite{cf10} (M, 26, Ahmedabad Co-Living Designer) & 
+\texttt{Cycle + BRTS}; \texttt{rainy cab guilt}; \texttt{shared lounge AC/geyser}; \texttt{dual monitors}; \texttt{bill split equally = no pressure}; \texttt{one-season online t-shirts}; \texttt{annual phone upgrade}; \texttt{track shopping/e-waste}; \texttt{1 monthly challenge (keep phone 1 extra year)}. & 
+Equal Bill-Split Apathy; Fast Fashion \& Phone Turnover; Single Monthly Challenge. & 
+\textbf{S2, S3, L1} \\
+\hline
+\end{longtable}
+}
+
+% =========================================================================
+% SECTION 3: SEMANTIC THEMES (S1 - S3)
+% =========================================================================
+\section{Semantic Themes (Explicit Patterns Across the Interviews)}
+
+\begin{semanticcard}{Theme S1: Seeking Everyday Tangibility When Abstract Carbon Units Fail to Guide Action}
+\textbf{Central Organising Concept:} Across age groups, interviewees want to understand how their daily choices matter, yet they lack a usable mental vocabulary for abstract scientific units like \textit{``Kg CO2e''} or raw utility bill \textit{``units''} (\texttt{CF1, CF2, CF6, CF8}) \cite{khandelwal2019, cf1, cf2, cf6, cf8}. Trust also erodes when calculators apply clean Western assumptions rather than India's coal-heavy national grid (\texttt{CF4}) \cite{cea2023, cf4} or European averages instead of local city peers (\texttt{CF2}) \cite{cf2}. Across the interviews, participants repeatedly ask for impact to be expressed in \textbf{familiar everyday currencies}: equivalent bus rides \cite{cf1}, 15-litre buckets of water \cite{cf1, cf3, cf8}, hourly fan or AC running costs \cite{cf2, cf3, cf8}, and dual Rupee (INR) and kilogram figures \cite{cf6}. While empirical studies note that metaphorical equivalencies do not automatically outperform raw carbon units in every context \cite{grinstein2018, mohanty2023}, our transcripts show a strong \textit{stated preference} for pairing kilogram figures with tangible household units and local baselines, which we treat as a primary hypothesis to test during usability evaluation.
+\begin{itemize}
+    \item \textbf{Quotes:} \textit{``If an app said my cab rides for the month were the same as like, a dozen bus trips, I'd probably just take the bus. Give me something I can picture. `Kg CO2e' means nothing to me.''} (\texttt{CF1} \cite{cf1}); \textit{``A unit of electricity here is much dirtier. We're still heavily on coal... I'd want to see the assumptions.''} (\texttt{CF4} \cite{cf4}); \textit{``Compare me to flats like mine in Bengaluru.''} (\texttt{CF2} \cite{cf2}); \textit{``Show me in rupees and kilos, both.''} (\texttt{CF6} \cite{cf6}); \textit{``Tell me how much one bucket is, and what the fan costs per hour.''} (\texttt{CF8} \cite{cf8}).
+\end{itemize}
+\end{semanticcard}
+
+\begin{semanticcard}{Theme S2: Tension Between Modern Convenience Waste and Uncredited Traditional Circularity}
+\textbf{Central Organising Concept:} Participants experience a mismatch between what generic calculators count and what actually drives guilt and pride in Indian homes \cite{lee2021}. Because most surveyed households are vegetarian or eat chicken only once or twice a week (\texttt{CF1, CF3, CF4, CF5, CF6, CF10} \cite{cf1, cf3, cf4, cf5, cf6, cf10}), their self-identified waste comes from \textbf{time-pressed urban convenience and fast replacement}: plastic boxes, foil, and bubble wrap from late-night food and grocery deliveries (\texttt{CF1, CF2, CF3, CF5, CF6, CF9} \cite{liu2020, cf1, cf2, cf3, cf5, cf6, cf9}), oversupplied app vegetables rotting in the fridge or binned student takeaway (\texttt{CF3, CF7} \cite{cf3, cf7}), high-dairy meals versus seasonal millets (\texttt{CF1, CF2, CF4} \cite{cf1, cf2, cf4}), and throwing out cheap online t-shirts or upgrading phones every year (\texttt{CF2, CF10} \cite{shi2021, cf2, cf10}). Conversely, participants feel short-changed when calculators penalise purchases while ignoring India's everyday \textbf{repair and circularity habits}, including fixing electronics for years (\texttt{CF4} \cite{cf4}), selling dry recyclables to the \textit{kabadiwala} (\texttt{CF3} \cite{cf3}), and composting kitchen scraps (\texttt{CF3, CF5, CF8} \cite{cf3, cf5, cf8}).
+\begin{itemize}
+    \item \textbf{Quotes:} \textit{``We order in every night, and then there's just boxes everywhere. I feel bad about the plastic.''} (\texttt{CF1} \cite{cf1}); \textit{``They always send too much, so half of it goes bad in the fridge. That's the waste I really see.''} (\texttt{CF3} \cite{cf3}); \textit{``I genuinely want to know if the market is better than ordering online, because the van is a factor too.''} (\texttt{CF5} \cite{cf5}); \textit{``Phone upgrades and clothes are the stuff I'd actually change... keep the phone an extra year.''} (\texttt{CF10} \cite{cf10}); \textit{``In the village nothing gets thrown away quickly... phones last years, someone fixes everything. If the tool only counts what you buy, it misses all that.''} (\texttt{CF4} \cite{cf4}).
+\end{itemize}
+\end{semanticcard}
+
+\begin{semanticcard}{Theme S3: Low Effort Thresholds and Multi-Level Language Access}
+\textbf{Central Organising Concept:} Consistent with HCI eco-feedback literature showing that high interaction effort causes rapid disengagement \cite{froehlich2010, hoffmann2024, malan2020}, participants treat carbon tracking as a secondary task that they will abandon if it feels like paperwork (\texttt{CF1, CF2, CF7, CF8, CF9} \cite{cf1, cf2, cf7, cf8, cf9}). Users reject 40-question forms, daily typing, and heavy mobile data use (\texttt{CF1, CF7} \cite{cf1, cf7}), asking instead for 2-tap check-ins, simple weekly or monthly summaries, or a timer on an existing smart plug (\texttt{CF1, CF2, CF7, CF9, CF10} \cite{cf1, cf2, cf7, cf9, cf10}). Because Indian households and student flats bring together technical users and relatives who do not read English, the tool must pair a simple visual view across regional languages (\textbf{Hindi} \cite{cf1, cf3, cf4, cf8}, \textbf{Marathi} \cite{cf1}, \textbf{Tamil} \cite{cf4}, \textbf{Bengali} \cite{cf7}, and \textbf{Gujarati} \cite{cf10}) with an optional detailed view where researchers can inspect emission assumptions and export CSV data (\texttt{CF4} \cite{cf4}).
+\begin{itemize}
+    \item \textbf{Quotes:} \textit{``It can't be a long form. I'm not sitting there doing forty questions. Maybe a couple of taps a day?... And it can't eat data. My plan is tiny.''} (\texttt{CF1} \cite{cf1}); \textit{``A simple weekly picture would be better than a long report. Oh, and it should be in Bengali too.''} (\texttt{CF7} \cite{cf7}); \textit{``Maybe a simple view for them and a detailed one for people like me.''} (\texttt{CF4} \cite{cf4}).
+\end{itemize}
+\end{semanticcard}
+
+% =========================================================================
+% SECTION 4: LATENT THEMES (L1 - L3)
+% =========================================================================
+\section{Latent Themes (Underlying Household and Structural Dynamics)}
+
+\begin{latentcard}{Theme L1 (Latent): Diffused Responsibility in Shared Hostels, Flats, and Co-Living Spaces}
+In university hostels (\texttt{CF1} \cite{cf1}), rented student flats where the landlord pays the electricity bill (\texttt{CF7} \cite{cf7}), and co-living spaces that split bills equally (\texttt{CF10} \cite{cf10}), individual consumption is structurally separated from personal financial cost. Nobody wants to be the confrontational peer who polices the shared geyser or lounge AC, and saving power individually does not lower one's rent. Drawing on Tiefenbeck et al.'s finding that salient, real-time resource feedback can overcome split-incentive apathy even when users do not pay per unit \cite{tiefenbeck2018}, the tool must make shared resource use visible without turning flatmates against each other.
+\begin{itemize}
+    \item \textbf{Quotes:} \textit{``The landlord pays the electricity, so none of us really think about it.''} (\texttt{CF7} \cite{cf7}); \textit{``The bill gets split between everyone, so there's no real pressure to cut back. Nobody's the one who says turn it off.''} (\texttt{CF10} \cite{cf10}); \textit{``The geyser is the main thing. Somebody always leaves it on and I'm like, who??''} (\texttt{CF1} \cite{cf1}).
+\end{itemize}
+\end{latentcard}
+
+\begin{latentcard}{Theme L2 (Latent): Unpaid Domestic Policing and Generational Friction in Family Homes}
+In joint families and couples (\texttt{CF3, CF5, CF6, CF8} \cite{cf3, cf5, cf6, cf8}), managing water and electricity is a negotiated domestic relationship rather than an isolated personal choice. Homemakers carry the tiring emotional load of reminding teenagers about 20-minute showers and unattended appliances (\texttt{CF3} \cite{cf3}). Meanwhile, older relatives already practise low-carbon habits like bucket baths, pressure-cooker cooking, and fan-only cooling (\texttt{CF1, CF3, CF8} \cite{cf1, cf3, cf8}), which younger relatives often dismiss as \textit{``old-fashioned''} (\texttt{CF8} \cite{cf8}). Conversely, children and grandchildren help bridge the digital divide by questioning plastic packets (\texttt{CF6} \cite{cf6}) or showing elders how apps work (\texttt{CF8} \cite{cf8}).
+\begin{itemize}
+    \item \textbf{Quotes:} \textit{``I do. Nobody else. Lights off when you leave a room, I'm always saying it... They look at their phones more than they look at me... Everyone should see their own part.''} (\texttt{CF3} \cite{cf3}); \textit{``I water the garden with a bucket, which my grandson finds very funny, he thinks I'm old-fashioned.''} (\texttt{CF8} \cite{cf8}); \textit{``We're on the same team, but we don't always agree on what matters.''} (\texttt{CF5} \cite{cf5}).
+\end{itemize}
+\end{latentcard}
+
+\begin{latentcard}{Theme L3 (Latent): Safety, Shift Work, and Heat Constraints Overriding Personal Choice}
+Echoing Brynjarsd\'{o}ttir et al.'s critique of narrow rationalist eco-feedback that ignores everyday social constraints \cite{brynjarsdottir2012} and Hoffmann et al.'s finding that carbon feedback has weak effects on structurally locked mobility habits \cite{hoffmann2024}, many high-emission actions in Indian cities are non-negotiable survival responses. Women travelling home before a 10:30 PM hostel curfew or finishing a hospital night shift when buses have stopped \textit{must} take solo cabs for physical safety (\texttt{CF1, CF9} \cite{cf1, cf9}). Likewise, a nurse sleeping at 11 AM in Hyderabad's heat (\texttt{CF9} \cite{cf9}) or a student studying until 3 AM in a hostel that bans gas stoves (\texttt{CF1} \cite{cf1}) cannot simply turn off the AC or cook from scratch. Penalising these locked necessities triggers guilt and disengagement (\texttt{CF2, CF4, CF5, CF9} \cite{cf2, cf4, cf5, cf9}).
+\begin{itemize}
+    \item \textbf{Quotes:} \textit{``Hostel gate shuts at ten thirty and I'm not walking back alone in the dark.''} (\texttt{CF1} \cite{cf1}); \textit{``Night shift I take a cab, because the buses have stopped... Work around my rota... please, no notifications at night. I'm trying to sleep.''} (\texttt{CF9} \cite{cf9}); \textit{``Not a lecture please, my mum already does that.''} (\texttt{CF2} \cite{cf2}); \textit{``Not a score that makes me feel like a bad person. Tell me the easiest thing I can change.''} (\texttt{CF5} \cite{cf5}).
+\end{itemize}
+\end{latentcard}
+
+% =========================================================================
+% SECTION 5: CONCISE SYNTHESIS, RQs & METHODOLOGICAL REFLECTION
+% =========================================================================
+\section{Cross-Theme Synthesis and Methodological Reflection}
+\begin{synthesisbox}{Synthesis: What is the Design Problem Really About?}
+Across \texttt{S1} to \texttt{L3}, interviewees care about waste and household costs in principle, but lack a usable quantitative vocabulary to connect everyday routines to emissions \cite{khandelwal2019}. Standard calculators break down in urban India across three dimensions: (1) \textbf{Meaningless Baselines and Units (\texttt{S1, S2}):} users need India's official unified national grid baseline (\textbf{$0.716\text{ kg CO}_2/\text{kWh}$} weighted average including renewables) \cite{cea2023}, visibility into convenience packaging and circular repair/compost habits \cite{liu2020, cf1, cf3, cf4, cf10}, and relatable dual units (Rupees, 15L buckets, fan-hours, and bus trips) \cite{cf1, cf6, cf8}; (2) \textbf{Constrained Agency (\texttt{S3, L3}):} because night safety, shift work, and extreme heat lock certain habits \cite{brynjarsdottir2012, hoffmann2024, cf1, cf9}, moralising scores must be replaced by \textbf{low-effort habit comparisons} \cite{froehlich2010, cf5, cf6}; and (3) \textbf{Household Governance (\texttt{L1, L2}):} to balance collective harmony with \texttt{CF3}'s desire for family members to \textit{``see their own part''} \cite{cf3}, shared views should show **shared household totals by default, with individual or room-level attribution strictly opt-in**.
+\vspace{2pt}\hrule\vspace{3pt}
+\textbf{Provisional Research Questions (Aligned with LR for D2/D3):} \textbf{RQ1:} How does pairing $\text{kg CO}_2$ with everyday physical and Rupee equivalents affect users' comprehension and perceived usefulness of footprint feedback \cite{grinstein2018, mohanty2023, cf1, cf6, cf8}? \textbf{RQ2:} Can 2-tap presets capture Indian convenience waste, dairy, and device longevity with low enough effort to sustain engagement \cite{froehlich2010, hoffmann2024, cf1, cf10}? \textbf{RQ3:} How does a shared-by-default, opt-in attribution view support household and hostel conservation without causing interpersonal conflict \cite{tiefenbeck2018, cf3, cf7, cf10}?
+\vspace{2pt}\hrule\vspace{3pt}
+\textbf{Methodological Reflection and Coherent MVP Scope:} Because \texttt{CF1} to \texttt{CF10} are ten illustrative coursework transcripts \cite{cf1, cf10}, they reflect stated preferences rather than observed behaviour. For electricity calculations, India's Central Electricity Authority (CEA, Version 19.0, Dec 2023) publishes a single national grid baseline; we adopt the \textbf{weighted average factor including renewables ($0.716\text{ kg CO}_2/\text{kWh}$)} because it reflects the actual mix delivered to households, whereas the ex-RES figure ($0.823\text{ kg CO}_2/\text{kWh}$) overstates domestic grid intensity \cite{cea2023}. To keep our Java/JavaFX MVP coherent and offline-first, we prioritise **local storage, 3-step setup, 2-tap preset logging, CEA grid and tangible unit conversion, and side-by-side habit comparisons**. Features requiring external data or file exports (local peer flat benchmarks using static reference survey tables and CSV exports) are explicitly scoped as **Should/Could-Have features for Increment 2** \cite{cf2, cf4}.
+\end{synthesisbox}
+
+% =========================================================================
+% SECTION 6: STAKEHOLDER PERSONAS (PRIMARY & SECONDARY TRANSCRIPTS)
+% =========================================================================
+\section{Stakeholder Personas}
+We developed six distinct personas (\texttt{P1} to \texttt{P6}) across \textbf{three stakeholder groups} (two personas per group). Each persona is anchored in a \textbf{unique primary transcript} (\texttt{CF1, CF4, CF2, CF9, CF3, CF8}), supplemented by secondary transcripts (\texttt{CF7, CF10, CF5, CF6}) to ensure all ten interviews are represented:
+
+{\footnotesize
+\rowcolors{2}{bgRow}{white}
+\begin{longtable}{|>{\raggedright\arraybackslash}p{4.1cm}|>{\raggedright\arraybackslash}p{4.3cm}|>{\raggedright\arraybackslash}p{2.9cm}|>{\raggedright\arraybackslash}p{4.2cm}|}
+\hline
+\rowcolor{cNavy}
+\textcolor{white}{\textbf{Stakeholder Group}} & \textcolor{white}{\textbf{Represented Personas}} & \textcolor{white}{\textbf{Primary (Secondary)}} & \textcolor{white}{\textbf{Associated Scenarios}} \\
+\hline
+\textbf{Group 1:} Urban Students \& Shared-Housing Youth & \textbf{P1:} Ananya Deshmukh \newline \textbf{P2:} Karthik Sundaram & \textbf{CF1} \cite{cf1} (\texttt{CF7} \cite{cf7}) \newline \textbf{CF4} \cite{cf4} & \textbf{SC2} (P1: Pune Hostel Floor) \newline \textbf{SC4} (P2: Chennai Co-Living) \\
+\hline
+\textbf{Group 2:} Time-Poor Working Professionals & \textbf{P3:} Rohan Kulkarni \newline \textbf{P4:} Priya Reddy & \textbf{CF2} \cite{cf2} (\texttt{CF10} \cite{cf10}) \newline \textbf{CF9} \cite{cf9} (\texttt{CF5} \cite{cf5}) & \textbf{SC4} (P3: Chennai Co-Living) \newline \textbf{SC3} (P4: Night-Shift Rota) \\
+\hline
+\textbf{Group 3:} Multi-Generational Household Managers \& Elders & \textbf{P5:} Sunita Sharma \newline \textbf{P6:} Rajeshwar Verma & \textbf{CF3} \cite{cf3} (\texttt{CF5, CF6} \cite{cf5, cf6}) \newline \textbf{CF8} \cite{cf8} (\texttt{CF3} \cite{cf3}) & \textbf{SC1} (P5 \& P6: Noida 3BHK Water \& Electricity) \\
+\hline
+\end{longtable}
+}
+
+{\footnotesize
+% PERSONA 1
+\begin{longtable}{|>{\raggedright\arraybackslash}p{2.9cm}|>{\raggedright\arraybackslash}p{13.7cm}|}
+\hline
+\rowcolor{cTeal}\multicolumn{2}{|l|}{\textcolor{white}{\textbf{P1: Ananya Deshmukh (Hostel Engineering Student)} \hfill \textit{Group 1 | Primary: CF1 \cite{cf1} (Sec: CF7 \cite{cf7}) | S1, S2, S3, L1, L3}}} \\
+\hline
+\textbf{Demographics} & Age 21 | Woman | Final-year B.Tech student, Pune university hostel (roommate from Kolkata) | Basic Android phone with a 1.5 GB/day data cap; reads English, Marathi, and Hindi (roommate prefers Bengali) \cite{cf1, cf7}. \\
+\hline
+\textbf{Behaviours} & Walks 15 mins to college; takes PMPML buses or shared autos on weekends; takes Ola/Uber late at night to beat the 10:30 PM hostel curfew safely \cite{cf1}. Eats veg mess food (paneer, dal), cooks Maggi or eggs on a hidden induction plate, orders 3 AM exam delivery in plastic boxes, and bins unfinished takeaway \cite{cf1, cf7}. Shares a floor geyser and summer tanker water \cite{cf1}. \\
+\hline
+\textbf{Goals} & (1) Picture how curfew cabs, leftover food, exam plastic, and showers add up in everyday units; (2) Log habits in 2 taps offline for free; (3) Prompt floor-mates to switch off the shared geyser without starting an argument \cite{cf1, cf7}. \\
+\hline
+\textbf{Attitudes} & Cares about waste and feels guilty about exam-week plastic, but has to stay practical during late-night exams and curfews \cite{cf1}. \\
+\hline
+\textbf{Motivations} & Clear visual comparisons (\textit{``cab rides = a dozen bus trips''}; bucket bath vs.\ shower) and simple weekly pictures \cite{cf1, cf7}. \\
+\hline
+\textbf{Frustrations} & \textit{``Kg CO2e''} means nothing to her; bundled hostel and landlord bills hide electricity costs so peers leave the geyser on; hates 40-question forms and data-heavy apps \cite{cf1, cf7}. \\
+\hline
+\end{longtable}
+
+% PERSONA 2
+\begin{longtable}{|>{\raggedright\arraybackslash}p{2.9cm}|>{\raggedright\arraybackslash}p{13.7cm}|}
+\hline
+\rowcolor{cTeal}\multicolumn{2}{|l|}{\textcolor{white}{\textbf{P2: Karthik Sundaram (Env.\ Sci.\ Postgrad \& Repair Advocate)} \hfill \textit{Group 1 | Primary: CF4 \cite{cf4} | S1, S2, S3, L3}}} \\
+\hline
+\textbf{Demographics} & Age 24 | Man | M.Sc. Environmental Science student living in a shared 2BHK co-living flat in Chennai (grew up in a Tamil Nadu village) | Laptop user comfortable with CSV data; speaks Tamil, Hindi, and English \cite{cf4}. \\
+\hline
+\textbf{Behaviours} & Cycles 6 km to university on a second-hand bicycle; takes the bus or share auto when it rains; rides his father's two-wheeler in his village \cite{cf4}. Eats local seasonal millets and pulses, keeps phones repaired for years, and wears passed-down clothes \cite{cf4}. \\
+\hline
+\textbf{Goals} & (1) Check the calculator's assumptions to verify it uses India's coal-heavy grid baseline and accounts for village vs.\ city cooking fuels (wood/dung vs.\ LPG); (2) Export regional CSV data for research (Increment 2) while using a Simple View in Tamil or Hindi with friends; (3) Get credit for repairing items and cycling \cite{cf4}. \\
+\hline
+\textbf{Attitudes} & Analytical, sceptical of Western calculators, and against lecturing users \cite{cf4}. \\
+\hline
+\textbf{Motivations} & Honest emission numbers, fair dairy trade-off explanations, and recognition for repair and reuse habits \cite{cf4}. \\
+\hline
+\textbf{Frustrations} & Western tools underestimate India's coal grid and only count new purchases while ignoring repair culture \cite{cf4}. \\
+\hline
+\end{longtable}
+
+% PERSONA 3
+\begin{longtable}{|>{\raggedright\arraybackslash}p{2.9cm}|>{\raggedright\arraybackslash}p{13.7cm}|}
+\hline
+\rowcolor{cNavy}\multicolumn{2}{|l|}{\textcolor{white}{\textbf{P3: Rohan Kulkarni (Hybrid Tech Engineer \& Fast-Upgrade Shopper)} \hfill \textit{Group 2 | Primary: CF2 \cite{cf2} (Sec: CF10 \cite{cf10}) | S1, S2, S3, L1, L3}}} \\
+\hline
+\textbf{Demographics} & Age 29 | Man | Hybrid Software Engineer sharing a 2BHK co-living flat in Chennai with Karthik (\textbf{P2}) | Speaks English, Gujarati, and Hindi. \textit{Composite Note:} Combines \texttt{CF2}'s hybrid WFH AC and delivery habits with \texttt{CF10}'s shared co-living bill split and yearly phone upgrades, relocated from Bengaluru/Ahmedabad to Chennai so \textbf{P2} and \textbf{P3} share one flat in \textbf{SC4} \cite{cf2, cf10}. \\
+\hline
+\textbf{Behaviours} & Takes a shared company cab to the office on Tuesdays and Thursdays; works from home 3 days a week running his bedroom split AC (1 PM to 9 PM), two monitors, laptop, and air purifier while splitting the flat's electricity bill equally \cite{cf2, cf10}. Orders Swiggy/Zomato 3+ times a week, buys imported avocado/quinoa, upgrades his phone yearly, and bins cheap online t-shirts after one season \cite{cf2, cf10}. \\
+\hline
+\textbf{Goals} & (1) See his room's opt-in share of the split electricity bill and compare against reference flat baselines (Could-Have); (2) Track fast fashion, yearly phone upgrades, and delivery packaging without daily typing; (3) Set a smart-plug AC timer and take one monthly challenge (keep phone 1 extra year) \cite{cf2, cf10}. \\
+\hline
+\textbf{Attitudes} & Curious after a high summer electricity bill, but refuses daily logging or motherly lectures \cite{cf2, cf10}. \\
+\hline
+\textbf{Motivations} & One honest monthly figure, clear room-level AC estimates, and a single doable monthly challenge \cite{cf2, cf10}. \\
+\hline
+\textbf{Frustrations} & Utility bills only show raw ``units''; equal bill-splitting removes pressure to cut back on shared lounge AC; Amazon box-in-box and Swiggy plastic waste \cite{cf2, cf10}. \\
+\hline
+\end{longtable}
+
+% PERSONA 4
+\begin{longtable}{|>{\raggedright\arraybackslash}p{2.9cm}|>{\raggedright\arraybackslash}p{13.7cm}|}
+\hline
+\rowcolor{cNavy}\multicolumn{2}{|l|}{\textcolor{white}{\textbf{P4: Priya Reddy (Rotating Night-Shift Staff Nurse)} \hfill \textit{Group 2 | Primary: CF9 \cite{cf9} (Sec: CF5 \cite{cf5}) | S2, S3, L3}}} \\
+\hline
+\textbf{Demographics} & Age 31 | Woman | Hospital Staff Nurse on rotating shifts, solo flat in Hyderabad | Moderate digital confidence; speaks Telugu, Hindi, and English \cite{cf9}. \\
+\hline
+\textbf{Behaviours} & Takes the Metro and auto on day shifts, but \textit{has} to take solo cabs on night shifts because buses have stopped and walking in the dark is unsafe \cite{cf9}. Sleeps during the day with her bedroom AC on from 11 AM \cite{cf9}. Post-shift exhaustion makes her forget lights, charge devices overnight, and rely on hospital canteen packets and food delivery, though she packs a steel tiffin when rested \cite{cf9}. \\
+\hline
+\textbf{Goals} & (1) Have the tool fit around her weekly shift rota without penalising night safety cabs or daytime sleep AC; (2) Get one short weekly message (with daytime sleep alerts muted) pointing out a quiet off-day for laundry, tiffin prep, or local market shopping \cite{cf5, cf9}. \\
+\hline
+\textbf{Attitudes} & Bothered by canteen and delivery plastic waste, but worn out by rotating night shifts \cite{cf9}. \\
+\hline
+\textbf{Motivations} & Rota-aware reminders and practical, guilt-free suggestions for her days off \cite{cf5, cf9}. \\
+\hline
+\textbf{Frustrations} & Notifications that wake her up during the day; scores that make her feel like a bad person for shift needs; rota changes every week \cite{cf5, cf9}. \\
+\hline
+\end{longtable}
+
+% PERSONA 5
+\begin{longtable}{|>{\raggedright\arraybackslash}p{2.9cm}|>{\raggedright\arraybackslash}p{13.7cm}|}
+\hline
+\rowcolor{cTerracotta}\multicolumn{2}{|l|}{\textcolor{white}{\textbf{P5: Sunita Sharma (Multi-Generational Household Manager)} \hfill \textit{Group 3 | Primary: CF3 \cite{cf3} (Sec: CF5, CF6 \cite{cf5, cf6}) | S1, S2, S3, L2}}} \\
+\hline
+\textbf{Demographics} & Age 46 | Woman | Homemaker and Accounts Assistant, Noida 3BHK (with husband driving 25 km to Gurugram, 2 teenagers, and elders) | Uses phone apps, inverter screen, and one geyser smart plug; English and Hindi \cite{cf3, cf6}. \\
+\hline
+\textbf{Behaviours} & Manages all home energy, water, and waste on her own: cooks dal in an LPG pressure cooker, runs afternoon laundry, times the morning geyser, composts wet waste on the terrace, and sells dry waste to the \textit{kabadiwala} \cite{cf3}. Orders vegetables on apps (leading to plastic bags and spoilt produce in the fridge) and depends on twice-weekly society water tankers \cite{cf3, cf6}. \\
+\hline
+\textbf{Goals} & (1) View shared household totals with opt-in individual shares so her husband, teenagers, and elders see their own part without her nagging; (2) Show teen showers in litres or buckets and commute/grocery swaps in Rupees and kilos; (3) Track composted and \textit{kabadiwala}-recycled waste \cite{cf3, cf5, cf6}. \\
+\hline
+\textbf{Attitudes} & Thrifty and practical, but tired of being the only person policing the house \cite{cf3}. \\
+\hline
+\textbf{Motivations} & Phone charts that her teenagers and husband will actually look at, while showing respect for elders' bucket baths \cite{cf3, cf6}. \\
+\hline
+\textbf{Frustrations} & Teens ignore her reminders about 20-minute showers, unattended TVs, and overnight laptops; family arguments over AC temperature; app vegetables rotting in the fridge \cite{cf3}. \\
+\hline
+\end{longtable}
+
+% PERSONA 6
+\begin{longtable}{|>{\raggedright\arraybackslash}p{2.9cm}|>{\raggedright\arraybackslash}p{13.7cm}|}
+\hline
+\rowcolor{cTerracotta}\multicolumn{2}{|l|}{\textcolor{white}{\textbf{P6: Rajeshwar Prasad Verma (Frugal Elder \& Conservationist)} \hfill \textit{Group 3 | Primary: CF8 \cite{cf8} (Sec: CF3 \cite{cf3}) | S1, S3, L2}}} \\
+\hline
+\textbf{Demographics} & Age 58 | Man | Retired Railway Official living with his extended North Indian family (wife and teenage grandchildren) | Dislikes complicated menus; needs Plain Hindi and his grandchildren's help to set up apps \cite{cf3, cf8}. \\
+\hline
+\textbf{Behaviours} & Walks every morning and rides a scooter to the market; never owned a car and prefers trains \cite{cf8}. Uses ceiling fans, an LPG pressure cooker, and a backup inverter, choosing \textbf{no AC} even in June heat \cite{cf3, cf8}. Uses a bucket for bathing and watering his roses, and composts kitchen scraps \cite{cf3, cf8}. \\
+\hline
+\textbf{Goals} & (1) Check household water and electricity in plain Hindi using familiar units (cost per hour of fan use and buckets of water); (2) Use the app with his grandchildren so they see the value of his low-waste habits \cite{cf3, cf8}. \\
+\hline
+\textbf{Attitudes} & Frugal, proud of his compost-fed roses, and distrustful of abstract numbers he cannot verify \cite{cf8}. \\
+\hline
+\textbf{Motivations} & Plain Hindi wording, clear rupee and bucket figures, and spending time with his grandchildren \cite{cf8}. \\
+\hline
+\textbf{Frustrations} & Grandchildren laugh at his bucket watering as ``old-fashioned''; colony staff mix separated waste; English jargon \cite{cf8}. \\
+\hline
+\end{longtable}
+}
+
+% =========================================================================
+% SECTION 7: USER SCENARIOS (4 SINGLE-SITUATION TESTABLE SCENARIOS)
+% =========================================================================
+\section{User Scenarios}
+Each scenario describes \textbf{one specific situation} where stakeholders use the system \textbf{directly and indirectly} to achieve a goal, backed by transparent calculations using India's Central Electricity Authority (CEA, Version 19.0) weighted average national grid factor including renewables ($\mathbf{0.716\text{ kg CO}_2/\text{kWh}}$) \cite{cea2023}:
+
+\begin{scenariocard}{cTerracotta}{Scenario 1 (SC1): Resolving Summer Tanker-Water and Fan/Geyser Friction in a Noida 3BHK Home}
+\footnotesize
+\begin{itemize}
+    \item \textbf{Stakeholders \& Personas:} \textbf{Group 3} (\textbf{P5 Sunita}, elder relative \textbf{P6 Rajeshwar}) and Household Teenagers | Themes \texttt{S1, S2, S3, L2}.
+    \item \textbf{Specific Situation:} On a hot June morning in the Noida 3BHK flat, society water tankers are only arriving twice a week \cite{cf3}. Sunita (\textbf{P5}) is tired of arguing with her two teenagers over their 20-minute morning showers and unattended fans/TVs \cite{cf3}, while elder relative Rajeshwar (\textbf{P6}) wants to see household water and fan costs in plain Hindi \cite{cf8}.
+    \item \textbf{Direct System Use:} Sunita opens the \textbf{Household View} (which displays shared household totals by default), enables \textbf{Opt-In Individual Share Attribution} for the family, logs the morning geyser smart-plug timer and monthly electricity units, and switches to \textbf{Bilingual Mode (English and Plain Hindi)} \cite{cf3}.
+    \item \textbf{Indirect Stakeholder Use:} Looking at the screen with his grandchildren, Rajeshwar (\textbf{P6}, assisted user) reads the plain Hindi figures (\textbf{1 ceiling fan at $75\text{ W} = \text{Rs.\ } 0.60/\text{hour}$} at Rs.\ 8/kWh; $0.075\text{ kWh} \times 0.716 = \mathbf{0.054\text{ kg CO}_2/\text{hour}}$) and sees his bucket watering and terrace composting credited \cite{cea2023, cf3, cf8}. Sunita's teenagers check their phones and see that one 20-minute shower ($\approx 150\text{ L}$ at $7.5\text{ L/min}$) uses as much scarce tanker water as \textbf{ten 15-litre bucket baths} \cite{cf3}.
+    \item \textbf{Goal Achieved:} Sunita no longer has to police the bathrooms alone: the teenagers shorten their morning showers to save tanker water, and Rajeshwar's traditional bucket and fan habits are validated in plain Hindi \cite{cf3, cf8}.
+\end{itemize}
+\end{scenariocard}
+
+\begin{scenariocard}{cTeal}{Scenario 2 (SC2): Late-Night Exam Delivery Logging and Shared Geyser Nudges in a Pune Hostel}
+\footnotesize
+\begin{itemize}
+    \item \textbf{Stakeholders \& Personas:} \textbf{Group 1} (\textbf{P1 Ananya} and her Pune Hostel Floor-Mates) | Themes \texttt{S1, S2, S3, L1, L3}.
+    \item \textbf{Specific Situation:} Studying until 3 AM during final-year engineering exams in her Pune hostel, Ananya (\textbf{P1}) orders late-night paneer biryani in plastic boxes, makes Maggi on a hidden induction plate, and notices someone on her floor left the shared bathroom geyser switched on for 2 wasted hours \cite{cf1, cf7}.
+    \item \textbf{Direct System Use:} Using offline \textbf{2-Tap Preset Logging} (zero mobile data), Ananya logs her delivery meal, plastic packaging, and induction use in 5 seconds, while her 10:15 PM pre-curfew Ola cab ride is marked as a \textit{Safety-Locked Trip} so she is not penalised \cite{cf1}. She then taps the shared-appliance calculator to check the impact of leaving a $2\text{ kW}$ floor geyser on for 2 wasted hours ($4\text{ kWh} \times 0.716\text{ kg CO}_2/\text{kWh} = \mathbf{2.86\text{ kg CO}_2}$) \cite{cea2023, cf1}.
+    \item \textbf{Indirect Stakeholder Use:} Using a standard Indian diesel city bus factor of $0.015\text{ kg CO}_2/\text{pkm}$ across a typical $15\text{ km}$ round-trip student bus commute ($0.225\text{ kg CO}_2/\text{trip}$) \cite{wri2015}, the tool translates the $2.86\text{ kg CO}_2$ geyser waste into \textbf{13 city bus trips}. Ananya shares the Marathi, Hindi, and Bengali card in her hostel floor chat so floor-mates (indirect users) switch the geyser off \cite{cf1, cf7}.
+    \item \textbf{Goal Achieved:} Ananya logs her exam-week packaging waste in seconds without data drain or curfew guilt, and her floor-mates switch off the shared geyser without corridor arguments \cite{cf1}.
+\end{itemize}
+\end{scenariocard}
+
+\begin{scenariocard}{cNavy}{Scenario 3 (SC3): Night-Shift Rota Quiet Hours and Rest-Day Planning in a Hyderabad Flat}
+\footnotesize
+\begin{itemize}
+    \item \textbf{Stakeholders \& Personas:} \textbf{Group 2} (\textbf{P4 Priya}) | Themes \texttt{S2, S3, L3}.
+    \item \textbf{Specific Situation:} Priya (\textbf{P4}) finishes three straight hospital night shifts in Hyderabad. Because public buses have stopped running at 2 AM, she takes solo cabs home to stay safe, orders takeaway in plastic packets because she is too tired to cook, and runs her bedroom AC from 11 AM to 5 PM so she can sleep in the daytime heat \cite{cf9}.
+    \item \textbf{Direct System Use:} At the start of the week, Priya enters her rotating shift rota in two taps \cite{cf9}. The tool mutes all alerts during her daytime sleep window (11 AM to 5 PM) and marks her night-shift cabs and daytime sleep AC as \textit{Health and Safety Necessities}, avoiding any negative score penalty \cite{cf5, cf9}.
+    \item \textbf{Indirect / Scheduled Follow-Through:} On Friday morning, her first rest day on the rota, the tool sends \textbf{one short weekly message} suggesting two realistic tasks for her quiet afternoon: running one full washing-machine load and packing her reusable steel tiffin for the weekend shift (avoiding \textbf{4 single-use plastic canteen meal packets} over the weekend) \cite{cf9}.
+    \item \textbf{Goal Achieved:} Priya cuts down on canteen plastic and laundry power on her days off without being woken up during the day or made to feel guilty about her night shifts \cite{cf9}.
+\end{itemize}
+\end{scenariocard}
+
+\begin{scenariocard}{cPlum}{Scenario 4 (SC4): Shared Co-Living Bill Audit, WFH AC, and Phone Longevity in a Chennai 2BHK}
+\footnotesize
+\begin{itemize}
+    \item \textbf{Stakeholders \& Personas:} \textbf{Group 1} (\textbf{P2 Karthik}) and \textbf{Group 2} (\textbf{P3 Rohan}) | Themes \texttt{S1, S2, S3, L1, L3}.
+    \item \textbf{Specific Situation:} Sharing a Chennai 2BHK co-living flat where electricity bills are split equally, environmental science postgrad Karthik (\textbf{P2}) and hybrid software engineer Rohan (\textbf{P3}) receive a high summer electricity bill after Rohan runs his bedroom's $1.5\text{ kW}$ split AC from 1 PM to 9 PM across three weekly WFH days alongside dual monitors \cite{cf2, cf4, cf10}.
+    \item \textbf{Direct System Use:} Both flatmates enable \textbf{Opt-In Room Attribution} on top of their shared flat total. Karthik opens the \textbf{Detailed Audit View} to verify the CEA national grid factor ($0.716\text{ kg CO}_2/\text{kWh}$) \cite{cea2023, cf4}, logs his bicycle commute and phone repair for circularity credit, and uses the CSV export feature \textbf{[Deferred: Should-Have Increment 2]} for his research \cite{cf4}. Rohan checks the \textbf{Simple View} (comparing against a pre-loaded static reference table for urban 2BHK flats \textbf{[Could-Have]}) and tests cutting his room AC off 1 hour earlier across his 14 monthly WFH days ($1.5\text{ kW} \times 1\text{ hr} \times 14\text{ days} = 21\text{ kWh} \times 0.716\text{ kg CO}_2/\text{kWh} = \mathbf{15.04\text{ kg CO}_2}$ and $\mathbf{\text{Rs.\ } 168/\text{month}}$ saved at Rs.\ 8/kWh) \cite{cea2023, cf2}.
+    \item \textbf{Indirect / Monthly Challenge Follow-Through:} Seeing his online shopping summary, Rohan also picks one \textbf{Monthly Challenge}: \textit{``Keep your current smartphone 1 extra year''} to avoid embodied manufacturing waste \cite{shi2021, cf10}, while setting his smart-plug timer to turn his room AC off at 8 PM automatically \cite{cf2}.
+    \item \textbf{Goal Achieved:} Both flatmates see a transparent breakdown of their shared bill without conflict; Rohan automates his WFH AC cut-off and keeps his phone an extra year, while Karthik verifies the grid assumptions \cite{cf2, cf4, cf10}.
+\end{itemize}
+\end{scenariocard}
+
+% =========================================================================
+% REFERENCES (ACM SIGCHI NUMBERED FORMAT: LITERATURE [1-14] + TRANSCRIPTS [15-24])
+% =========================================================================
+\begin{thebibliography}{25}
+\footnotesize
+
+% --- Methodological & Academic Literature ---
+\bibitem{braun2006}
+V. Braun and V. Clarke. 2006. Using thematic analysis in psychology. \textit{Qualitative Research in Psychology} 3, 2 (2006), 77--101. DOI: https://doi.org/10.1191/1478088706qp063oa
+
+\bibitem{braun2019}
+V. Braun and V. Clarke. 2019. Reflecting on reflexive thematic analysis. \textit{Qualitative Research in Sport, Exercise and Health} 11, 4 (2019), 589--597. DOI: https://doi.org/10.1080/2159676X.2019.1628806
+
+\bibitem{shi2021}
+S. Shi and J. Yin. 2021. Global research on carbon footprint: A scientometric review. \textit{Environmental Impact Assessment Review} 89 (2021), 106571. DOI: https://doi.org/10.1016/j.eiar.2021.106571
+
+\bibitem{lee2021}
+J. Lee, O. Taherzadeh, and K. Kanemoto. 2021. The scale and drivers of carbon footprints in households, cities and regions across India. \textit{Global Environmental Change} 66 (2021), 102205. DOI: https://doi.org/10.1016/j.gloenvcha.2020.102205
+
+\bibitem{khandelwal2019}
+M. Khandelwal, V. Jain, A. Sharma, and S. Bansal. 2019. Students' Attitude toward Carbon Footprints of a Leading Private University in India. \textit{Management and Economics Research Journal} 5, 2019 (2019), 7606.
+
+\bibitem{malan2020}
+H. Malan et al. 2020. Impact of a Scalable, Multi-Campus ``Foodprint'' Seminar on College Students' Dietary Intake and Dietary Carbon Footprint. \textit{Nutrients} 12, 9 (2020), 2890. DOI: https://doi.org/10.3390/nu12092890
+
+\bibitem{liu2020}
+G. Liu et al. 2020. Environmental impacts characterization of packaging waste generated by urban food delivery services. \textit{Waste Management} 117 (2020), 157--169. DOI: https://doi.org/10.1016/j.wasman.2020.07.028
+
+\bibitem{froehlich2010}
+J. Froehlich, L. Findlater, and J. Landay. 2010. The design of eco-feedback technology. In \textit{Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI '10)}. ACM, 1999--2008. DOI: https://doi.org/10.1145/1753326.1753629
+
+\bibitem{brynjarsdottir2012}
+H. Brynjarsd\'{o}ttir et al. 2012. Sustainably unpersuaded: how persuasion narrows our vision of sustainability. In \textit{Proceedings of the SIGCHI Conference on Human Factors in Computing Systems (CHI '12)}. ACM, 947--956. DOI: https://doi.org/10.1145/2207676.2208539
+
+\bibitem{tiefenbeck2018}
+V. Tiefenbeck et al. 2018. Overcoming salience bias: How real-time feedback fosters resource conservation. \textit{Management Science} 64, 3 (2018), 1458--1476. DOI: https://doi.org/10.1287/mnsc.2016.2646
+
+\bibitem{grinstein2018}
+A. Grinstein, E. Nisan, and R. H. Piters. 2018. Carbon footprint equivalencies and consumer comprehension. \textit{Journal of Environmental Psychology} 56 (2018), 55--64.
+
+\bibitem{mohanty2023}
+P. Mohanty et al. 2023. Communicating carbon footprints to consumers: A review of framing and unit effects. \textit{Journal of Cleaner Production} 414 (2023), 137582.
+
+\bibitem{hoffmann2024}
+S. Hoffmann et al. 2024. Carbon footprint tracking apps and behavioral reduction across consumption domains. \textit{Ecological Economics} 217 (2024), 108065.
+
+\bibitem{cea2023}
+Central Electricity Authority (CEA). 2023. \textit{CO2 Baseline Database for the Indian Power Sector, User Guide Version 19.0 (December 2023)}. Ministry of Power, Government of India, New Delhi.
+
+\bibitem{wri2015}
+India GHG Program / WRI India. 2015. \textit{India Specific Road Transport Emission Factors}. World Resources Institute India, Mumbai.
+
+% --- Coursework Interview Transcripts (CF1 - CF10) ---
+\bibitem{cf1}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF1: Woman, Age 21, Final-Year Engineering Student, Hostel in Pune}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf2}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF2: Man, Age 29, Hybrid Software Engineer, Lives Alone in Bengaluru}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf3}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF3: Woman, Age 46, Homemaker and Part-Time Accounts Assistant, 3BHK in Noida}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf4}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF4: Man, Age 24, Environmental Science Postgraduate, PG in Chennai (Village Roots in Tamil Nadu)}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf5}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF5: Woman, Age 34, Marketing Manager, Lives with Partner in Thane, Commutes to Andheri}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf6}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF6: Man, Age 38, Bank Officer, Lives with Wife and Daughter in Gurugram}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf7}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF7: Woman, Age 19, First-Year Undergraduate, Shares Flat with Two Roommates in Kolkata}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf8}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF8: Man, Age 58, Retired Railway Official, Lives with Wife and Grandson in Lucknow}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf9}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF9: Woman, Age 31, Staff Nurse on Rotating Night Shifts, Lives Alone in Hyderabad}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\bibitem{cf10}
+COMP2300 Module Team. 2026. \textit{Interview Transcript CF10: Man, Age 26, Freelance Graphic Designer, Co-Living Space in Ahmedabad}. In COMP2300 Transcripts: Carbon Footprint in India (realistic v2), University of Southampton, 2026-10-19.
+
+\end{thebibliography}
+
+\end{document}
