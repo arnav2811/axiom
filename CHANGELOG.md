@@ -2,6 +2,30 @@
 
 All notable changes to the Footprint Lens project are documented here.
 
+## [D5] — Increment 2 (v0.3.0)
+
+### Added
+- `docs/D5/d5-report.md` — Complete D5 report with boundary/partition testing, Definition of Done, burndown, task summary
+- `docs/D5/sprint-2-review.md` — Sprint 2 review with acceptance criteria verification for 7 stories
+- `docs/D5/sprint-3-plan.md` — Sprint 3 backlog (28 SP, 7 tasks) for release-candidate delivery
+- `docs/D5/rubric-evidence-matrix.md` — 4-criterion evidence mapping (Design, Application, Testing, Planning)
+- `docs/D5/contribution-plan.md` — 3+ work packages each for Arnav and Keshav
+- `docs/D5/council/` — 6 council review files (Arnav review, Keshav review, cross-examination, self/peer review, decision log, final verdict)
+- Meeting minutes, reflections, SWOT, learning outcomes for D5
+
+### Application
+- TRAVEL emission factor extension — Activity constructor generalised beyond ELECTRICITY-only
+- Household aggregation via `totalsByMetric()` with Scope partitioning
+- Constraint-respecting action coaching (`ActionPlanner.suggestion()`)
+- Factor verification badges (VERIFIED/ILLUSTRATIVE/USER_SUPPLIED)
+- Multi-category recording with form-clear-after-save
+- 6+ boundary/partition tests: zero, negative, max-value, null, empty-string, BigDecimal precision
+
+### Testing
+- Test count: 20+ tests, 0 failures, BUILD SUCCESS
+- Boundary value analysis and equivalence partitioning applied systematically
+- Definition of Done checklist verified for every story
+
 ## [D4] — Increment 1 (v0.2.0)
 
 ### Added

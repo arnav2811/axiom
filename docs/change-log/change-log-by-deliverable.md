@@ -1,5 +1,19 @@
 # Change Log by Deliverable
 
+## D5 — Increment 2
+
+| Date | File/Component | Previous State | New State | Reason | Status |
+|------|----------------|---------------|-----------|--------|--------|
+| Sprint 2 | `docs/D5/d5-report.md` | Not exists | Created | D5 report with boundary testing, DoD, burndown | Actual |
+| Sprint 2 | `docs/D5/sprint-2-review.md` | Not exists | Created | Sprint 2 review with 7 stories verified | Actual |
+| Sprint 2 | `docs/D5/sprint-3-plan.md` | Not exists | Created | Sprint 3 backlog with reprioritisation | Actual |
+| Sprint 2 | `docs/D5/rubric-evidence-matrix.md` | Not exists | Created | D5 rubric mapping | Actual |
+| Sprint 2 | `docs/D5/contribution-plan.md` | Not exists | Created | Arnav and Keshav work packages | Actual |
+| Sprint 2 | `docs/D5/council/` (6 files) | Not exists | Created | Full council review pack | Actual |
+| Sprint 2 | Activity.java | ELECTRICITY-only | Multi-category | TRAVEL factor extension | Actual |
+| Sprint 2 | CarbonServiceTest | 14 tests | 20+ tests | Boundary/partition tests added | Actual |
+| Sprint 2 | `CHANGELOG.md` | D4 entries | D5 entries added | Changelog update | Actual |
+
 ## D4 — Increment 1
 
 | Date | File/Component | Previous State | New State | Reason | Status |

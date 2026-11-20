@@ -4,6 +4,14 @@ This file discloses all Generative AI tools used in the development of this proj
 
 ---
 
+## D5 Deliverable
+
+- **Tool:** Antigravity (Claude-based AI assistant)
+- **Purpose:** Generated D5 report with boundary/partition testing evidence, Sprint 2 review, Sprint 3 plan, rubric evidence matrix, contribution plan, council review files (6 files), meeting minutes (fictional reconstruction), reflection drafts (with [PLACEHOLDER] tags), SWOT analysis, and learning outcomes. AI assisted with documenting boundary value analysis methodology, equivalence partitioning approach, and Definition of Done verification.
+- **Disclosure:** AI assistance used for document generation and structuring. The boundary/partition testing methodology was designed with AI guidance. Reflection drafts contain [PLACEHOLDER] tags for student personalisation. Meeting minutes are FICTIONAL RECONSTRUCTION. All content requires student review before submission.
+
+---
+
 ## D4 Deliverable
 
 - **Tool:** Antigravity (Claude-based AI assistant)
