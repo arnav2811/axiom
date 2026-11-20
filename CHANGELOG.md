@@ -2,6 +2,44 @@
 
 All notable changes to the Footprint Lens project are documented here.
 
+## [D7] — Final Evaluation (v1.0.0)
+
+### Added
+- `docs/D7/d7-report.md` — Complete evaluation report with think-aloud usability testing design, 10 sections
+- `docs/D7/analysis-plan.md` — Detailed analysis methodology (quantitative + qualitative)
+- `docs/D7/evaluation-materials/` — 6 updated evaluation materials (facilitator script, task cards, questionnaire, observation sheet, info sheet, consent form)
+- `docs/D7/rubric-evidence-matrix.md` — 3-criterion evidence mapping
+- `docs/D7/contribution-plan.md` — Arnav (facilitation/analysis) and Keshav (instruments/observation)
+- `docs/D7/council/` — 6 council review files
+- Meeting minutes, reflections, learning outcomes for D7
+
+### Evaluation Design
+- Think-aloud usability testing, N=5-6 participants from another COMP2300 group
+- 5 tasks covering: recording, dashboard, editing, factor editor, export + coaching
+- SUS + SEQ + custom questions + observation sheet
+- Results marked [PENDING] — no fabricated data
+
+## [D6] — Increment 3 (v1.0.0-rc)
+
+### Added
+- `docs/D6/d6-report.md` — Complete D6 report with Sprint 3 review, feature summary, test coverage
+- `docs/D6/architecture.md` — Final architecture with ADRs 006-008, component diagram, traceability
+- `docs/D6/sprint-3-review.md` — Sprint 3 review with burndown and DoD verification
+- `docs/D6/user-guide.md` — Comprehensive user guide (11 sections, troubleshooting, keyboard shortcuts)
+- `docs/D6/rubric-evidence-matrix.md` — 4-criterion evidence mapping
+- `docs/D6/contribution-plan.md` — 6 work packages each for Arnav and Keshav
+- `docs/D6/council/` — 6 council review files
+- Meeting minutes, reflections, SWOT, learning outcomes for D6
+
+### Application
+- All 7 emission categories fully functional
+- Data export (CSV, RFC 4180 compliant)
+- Dashboard with JavaFX BarChart
+- Record editing and deletion with confirmation
+- Factor editor (FactorEditor class extraction)
+- UI polish: keyboard navigation, high-contrast, consistent layout
+- 28+ tests, 0 failures, BUILD SUCCESS
+
 ## [D5] — Increment 2 (v0.3.0)
 
 ### Added

@@ -1,5 +1,31 @@
 # Change Log by Deliverable
 
+## D7 — Final Evaluation
+
+| Date | File/Component | Previous State | New State | Reason | Status |
+|------|----------------|---------------|-----------|--------|--------|
+| D7 | `docs/D7/d7-report.md` | Not exists | Created | Evaluation report with think-aloud methodology | Actual |
+| D7 | `docs/D7/analysis-plan.md` | Not exists | Created | Quantitative + qualitative analysis procedures | Actual |
+| D7 | `docs/D7/evaluation-materials/` (6 files) | D3 baseline | Updated for v1.0.0 | Materials updated for final application features | Actual |
+| D7 | `docs/D7/rubric-evidence-matrix.md` | Not exists | Created | D7 rubric mapping | Actual |
+| D7 | `docs/D7/contribution-plan.md` | Not exists | Created | Arnav/Keshav evaluation roles | Actual |
+| D7 | `docs/D7/council/` (6 files) | Not exists | Created | Full council review pack | Actual |
+| D7 | `CHANGELOG.md` | D6 entries | D7 entries added | Changelog update | Actual |
+
+## D6 — Increment 3
+
+| Date | File/Component | Previous State | New State | Reason | Status |
+|------|----------------|---------------|-----------|--------|--------|
+| Sprint 3 | `docs/D6/d6-report.md` | Not exists | Created | D6 report with Sprint 3 review, feature summary | Actual |
+| Sprint 3 | `docs/D6/architecture.md` | Not exists | Created | Final architecture with ADRs 006-008 | Actual |
+| Sprint 3 | `docs/D6/sprint-3-review.md` | Not exists | Created | Sprint 3 review with burndown and DoD | Actual |
+| Sprint 3 | `docs/D6/user-guide.md` | Not exists | Created | Comprehensive user guide, 11 sections | Actual |
+| Sprint 3 | `docs/D6/rubric-evidence-matrix.md` | Not exists | Created | D6 rubric mapping | Actual |
+| Sprint 3 | `docs/D6/contribution-plan.md` | Not exists | Created | Arnav and Keshav work packages | Actual |
+| Sprint 3 | `docs/D6/council/` (6 files) | Not exists | Created | Full council review pack | Actual |
+| Sprint 3 | Application (`New/application/`) | Sprint 2 | Release candidate | All 7 categories, export, dashboard, factor editor, record management | Actual |
+| Sprint 3 | `CHANGELOG.md` | D5 entries | D6 entries added | Changelog update | Actual |
+
 ## D5 — Increment 2
 
 | Date | File/Component | Previous State | New State | Reason | Status |

@@ -2,16 +2,25 @@
 
 > **Note:** Commits listed below as "Proposed" are planned contribution targets. They become "Actual" only when genuinely authored by the named student and pushed to the repository. AI-drafted content is disclosed in `genai.txt`.
 
-## D3 Commits
+## Actual Commits (D3–D7)
+
+| # | Hash | Commit Message | Author | Files | Status |
+|---|------|---------------|--------|-------|--------|
+| 1 | `ca3e01e` | D3: complete evaluation plan, technical design, project planning, and project setup | Arnav | 37 files | Actual |
+| 2 | `b0c0f44` | D4: complete Increment 1 — Sprint 1 delivery with 14 tests, full report, council review | Arnav | 20 files | Actual |
+| 3 | `c8444cf` | D5: complete Increment 2 — boundary/partition testing, multi-category TRAVEL extension, household aggregation, 20+ tests | Arnav | 19 files | Actual |
+| 4 | *pending* | D6: complete Increment 3 — release candidate with all 7 categories, dashboard, user guide, 28+ tests | Arnav | ~25 files | Pending |
+| 5 | *pending* | D7: complete final evaluation — think-aloud usability testing design, materials, analysis plan | Arnav | ~20 files | Pending |
+
+## Proposed Commits (Keshav Contributions)
 
 | # | Proposed Commit Message | Author | Type | Files Affected | Status |
 |---|------------------------|--------|------|----------------|--------|
-| 1 | `D3: initialise deliverable structure, rubric matrix, and traceability chain` | Arnav | Documentation | `docs/D3/`, `docs/assessment/`, `docs/traceability/` | Proposed |
-| 2 | `D3: establish evaluation protocol, task scenarios, and data collection instruments` | Arnav | Documentation | `docs/D3/evaluation-protocol.md`, `docs/D3/evaluation-materials/*` | Proposed |
-| 3 | `D3: add architecture ADRs, use-case diagram, and final report integration` | Arnav | Documentation | `docs/D3/architecture.md`, `docs/D3/d3-report.md` | Proposed |
-| 4 | `D3: add UML class, sequence, and state diagrams for clean architecture` | Keshav | Documentation | `docs/D3/architecture.md` | Proposed |
-| 5 | `D3: establish 3-sprint roadmap with Sprint 1 backlog and burndown` | Keshav | Documentation | `docs/D3/project-plan.md` | Proposed |
-| 6 | `D3: add comprehensive risk register and verify build infrastructure` | Keshav | Documentation + Engineering | `docs/D3/risk-register.md`, build verification | Proposed |
+| K1 | `D4: add Sprint 1 architecture evolution and ADR updates` | Keshav | Documentation | `docs/D4/architecture.md` | Proposed |
+| K2 | `D5: extend Activity constructor for TRAVEL, add boundary tests` | Keshav | Engineering + Testing | `Activity.java`, `CarbonServiceTest.java` | Proposed |
+| K3 | `D6: extract FactorEditor, implement record management` | Keshav | Engineering | `FactorEditor.java`, `FootprintLensApp.java` | Proposed |
+| K4 | `D6: add all 7 category factors and category tests` | Keshav | Engineering + Testing | Factor data, test classes | Proposed |
+| K5 | `D7: update task cards and questionnaire for final evaluation` | Keshav | Documentation | `docs/D7/evaluation-materials/` | Proposed |
 
 ## Pre-D3 Commits (Existing History)
 

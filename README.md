@@ -18,7 +18,10 @@ Footprint Lens helps Indian households understand their carbon footprint through
 - **D1:** ✅ Submitted (`Submitted D1/`)
 - **D2:** ✅ Submitted (`Submitted D2/`)
 - **D3:** ✅ Complete — evaluation plan, architecture, project plan, project setup
-- **D4–D7:** Planned
+- **D4:** ✅ Complete — Sprint 1 delivery, 14 tests, design evolution
+- **D5:** ✅ Complete — boundary/partition testing, TRAVEL extension, 20+ tests
+- **D6:** ✅ Complete — release candidate, all 7 categories, dashboard, user guide, 28+ tests
+- **D7:** ✅ Complete — evaluation design, materials, analysis plan (results [PENDING])
 
 ## Repository
 
@@ -48,17 +51,26 @@ comp2300/
     src/test/java/in/carbon/core/ # Test suite
     pom.xml                       # Maven build descriptor
   docs/
-    D3/                           # D3 deliverable documents
+    D3/                           # Evaluation plan, architecture, project plan, setup
       evaluation-materials/       # 6 evaluation materials files
+      council/                    # 6 council review files
+    D4/                           # Sprint 1 review, architecture evolution
+      council/                    # 6 council review files
+    D5/                           # Sprint 2 review, boundary testing, Sprint 3 plan
+      council/                    # 6 council review files
+    D6/                           # Sprint 3 review, user guide, final architecture
+      council/                    # 6 council review files
+    D7/                           # Final evaluation report, analysis plan
+      evaluation-materials/       # 6 updated evaluation materials
       council/                    # 6 council review files
     audit/                        # Repository audit documents
     assessment/                   # Rubric compliance matrix
     traceability/                 # D1→D7 traceability chain
     change-log/                   # Detailed change records
-  simulated-and-reconstructed/    # Fictional meeting minutes, reflections
-  learning-outcomes/              # Learning outcome records
-  CHANGELOG.md                    # Master changelog
-  genai.txt                       # AI assistance disclosure
+  simulated-and-reconstructed/    # Fictional meeting minutes, reflections, SWOT
+  learning-outcomes/              # Learning outcome records (D3-D7)
+  CHANGELOG.md                    # Master changelog (D3-D7)
+  genai.txt                       # AI assistance disclosure (D3-D7)
 ```
 
 ## Running the Application

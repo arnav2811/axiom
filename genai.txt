@@ -4,6 +4,22 @@ This file discloses all Generative AI tools used in the development of this proj
 
 ---
 
+## D7 Deliverable
+
+- **Tool:** Antigravity (Claude-based AI assistant)
+- **Purpose:** Generated D7 evaluation report with think-aloud usability testing methodology, analysis plan (quantitative and qualitative procedures), evaluation materials (facilitator script, task cards, questionnaire, observation sheet, info sheet, consent form), rubric evidence matrix, contribution plan, council review files (6 files), meeting minutes (fictional reconstruction), reflection drafts (with [PLACEHOLDER] tags), and learning outcomes.
+- **Disclosure:** AI assistance used for evaluation design and document generation. The evaluation methodology references academic sources (Brooke 1996, Nielsen 1994, Ericsson & Simon 1993). All empirical results are marked [PENDING] — no data has been fabricated. Meeting minutes are FICTIONAL RECONSTRUCTION. Reflection drafts contain [PLACEHOLDER] tags for student personalisation. All content requires student review before submission.
+
+---
+
+## D6 Deliverable
+
+- **Tool:** Antigravity (Claude-based AI assistant)
+- **Purpose:** Generated D6 report with Sprint 3 review, final architecture document (ADRs 006-008), user guide (11 sections), rubric evidence matrix, contribution plan, council review files (6 files), meeting minutes (fictional reconstruction), reflection drafts (with [PLACEHOLDER] tags), SWOT analysis, and learning outcomes. AI assisted with documenting the FactorEditor extraction rationale, dashboard design decisions, and CSV export architecture.
+- **Disclosure:** AI assistance used for document generation and structuring. Reflection drafts contain [PLACEHOLDER] tags for student personalisation. Meeting minutes are FICTIONAL RECONSTRUCTION. All content requires student review before submission.
+
+---
+
 ## D5 Deliverable
 
 - **Tool:** Antigravity (Claude-based AI assistant)
