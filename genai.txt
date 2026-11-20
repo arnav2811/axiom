@@ -1,49 +1,44 @@
-# COMP2300 Software Design and Development Project
-## Deliverable 1: GenAI Disclosure (genai.txt)
+# GenAI Disclosure — Footprint Lens (COMP2300)
 
-**Module:** COMP2300 (University of Southampton)  
-**Student Authors:** Arnav, Hiranya, Keshav  
-**Submission Date:** October 2026
+This file discloses all Generative AI tools used in the development of this project, as required by the COMP2300 module specification.
 
 ---
 
-### 1. Tools Used and Their Purposes
+## D1 and D2 (Submitted)
 
-- **Google Gemini (Gemini Advanced / API integration):** Used to support our research, compare relevant literature, identify possible research gaps, and organise the structure of our document.
+The original genai.txt content for D1 and D2 is preserved in the submitted folders. AI tools were used for literature research assistance, report drafting, and prototype development as disclosed in those submissions.
 
-- **Claude (Anthropic AI):** Used to check LaTeX syntax, resolve formatting issues, maintain consistency across the document, and improve the clarity of our writing.
+## D3: Evaluation Plan, Architectural Design and Technical Setup
 
-- **ChatGPT (OpenAI):** Used to help us understand difficult concepts, explore different ways of explaining our ideas during team discussions, improve the phrasing of our arguments, and review our coursework against the assessment rubric and specification criteria.
+### Tool Used
+- **Antigravity (powered by Claude)** — AI coding and documentation assistant
 
-### 2. How We Used Generative AI
+### Purpose and Scope of Use
+The following D3 artefacts were drafted with AI assistance:
 
-We used generative AI tools at different stages of Deliverable 1 to support our research, discussions, writing, and document preparation. They helped us work through difficult concepts, organise our ideas, and identify areas where our work could be improved.
+1. **Evaluation Protocol** (`docs/D3/evaluation-protocol.md`) — AI assisted with structuring the evaluation plan, suggesting the think-aloud protocol methodology, and formatting the analysis plan. The evaluation questions, task scenarios, and success criteria were designed to map to our D1 research findings and D2 design principles.
 
-**a) Literature Review and Research**
+2. **Evaluation Materials** (`docs/D3/evaluation-materials/*`) — AI assisted with drafting the participant information sheet, consent form, facilitator script, task instruction cards, SUS/SEQ questionnaire, and observation data collection sheet. These follow standard usability testing templates.
 
-- Comparing ideas and methodologies discussed in our starter papers and relevant publications from sources such as the ACM Digital Library and Elsevier.
-- Understanding the differences between approaches such as Bottom-Up Life Cycle Assessment and Top-Down Input-Output Analysis.
-- Organising the main themes identified in transcripts CF1–CF10 and exploring potential gaps in the existing literature.
+3. **Architecture Document** (`docs/D3/architecture.md`) — AI assisted with documenting the existing clean layered architecture, generating Mermaid UML diagrams (class, sequence, use-case, state machine) from the actual source code structure, and writing Architectural Decision Records (ADRs).
 
-**b) Understanding Concepts and Team Discussions**
+4. **Project Plan** (`docs/D3/project-plan.md`) — AI assisted with structuring the 3-sprint roadmap, creating the Sprint 1 backlog with story point estimates, and generating the planned burndown chart.
 
-- Using ChatGPT to understand complex concepts and consider different ways of explaining our ideas.
-- Improving the wording of points for group discussions so that we could communicate our arguments more clearly.
-- Using AI feedback to review our coursework against the assessment rubric and specification criteria, identify areas that needed further work, and check whether the required criteria had been addressed.
+5. **Risk Register** (`docs/D3/risk-register.md`) — AI assisted with identifying and scoring project risks, suggesting mitigation strategies.
 
-**c) LaTeX and Document Formatting**
+6. **D3 Report** (`docs/D3/d3-report.md`) — AI assisted with integrating content from the above documents into a coherent report structure.
 
-- Getting assistance with LaTeX structure, tables, custom `tcolorbox` styling, and the overall presentation of the document.
-- Identifying compilation errors and resolving formatting issues.
-- Checking the consistency of the document layout and referencing style against the intended academic format.
+7. **Council Review Files** (`docs/D3/council/*`) — AI simulated two-perspective reviews (research/editorial and engineering perspectives) to identify quality issues and actionable improvements. These are clearly marked as FICTIONAL RECONSTRUCTION.
 
-**d) Writing and Editing**
+8. **Supporting Documents** — Traceability chain, rubric evidence matrix, contribution plan, meeting minutes (fictional reconstruction), reflection drafts (with placeholder tags for genuine personal experience), learning outcomes.
 
-- Improving the clarity and flow of our writing while maintaining an appropriate British academic tone.
-- Identifying repetitive sentences and finding clearer ways to express ideas across stakeholder personas, scenarios, and other sections.
+### What AI Did NOT Do
+- AI did not write the original Java/JavaFX application code (that existed prior to D3).
+- AI did not run tests, compile code, or push to repositories.
+- AI did not recruit participants, conduct evaluations, or generate empirical data.
+- AI did not fabricate personal experiences, actual hours, or attendance records.
+- Meeting minutes are clearly labelled as FICTIONAL RECONSTRUCTION.
+- Reflection drafts contain [PLACEHOLDER] tags for genuine student content.
 
-### 3. Human Verification and Responsibility
-
-We reviewed and edited AI-generated suggestions, explanations, and code snippets before using them in our work. Where applicable, we checked research-related information against relevant sources. We also treated AI feedback on the assessment rubric as a guide for improvement rather than as a final judgement of our coursework.
-
-The student authors remain responsible for the final submission, including the interpretation of research, the development of stakeholder personas and scenarios, and the evaluation of the work. We used AI to support our understanding, communication, and review process, while retaining responsibility for the decisions made and the content included in the final document.
+### Student Review
+All AI-generated content has been reviewed by Arnav Mishra and Keshav Singhal. Students are responsible for verifying accuracy, confirming alignment with the submitted D1/D2 baseline, and personalising placeholder content before formal submission.
