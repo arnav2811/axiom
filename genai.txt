@@ -4,6 +4,14 @@ This file discloses all Generative AI tools used in the development of this proj
 
 ---
 
+## D4 Deliverable
+
+- **Tool:** Antigravity (Claude-based AI assistant)
+- **Purpose:** Generated D4 report structure, architecture update, sprint review, sprint 2 plan, rubric evidence matrix, contribution plan, council review files, meeting minutes, reflection drafts, SWOT analysis, and learning outcomes. Verified Maven build (14 tests pass, BUILD SUCCESS). All generated content requires student review and personalisation.
+- **Disclosure:** AI assistance used for document generation. Build verification (`mvn clean test`) was executed directly. Reflection drafts contain [PLACEHOLDER] tags for student personalisation.
+
+---
+
 ## D1 and D2 (Submitted)
 
 The original genai.txt content for D1 and D2 is preserved in the submitted folders. AI tools were used for literature research assistance, report drafting, and prototype development as disclosed in those submissions.

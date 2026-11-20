@@ -2,6 +2,23 @@
 
 All notable changes to the Footprint Lens project are documented here.
 
+## [D4] — Increment 1 (v0.2.0)
+
+### Added
+- `docs/D4/d4-report.md` — Complete D4 report with Sprint 1 review, burndown, testing evidence
+- `docs/D4/architecture.md` — Architecture evolution from D3, design refinements, updated UML
+- `docs/D4/sprint-1-review.md` — Sprint 1 review with acceptance criteria verification
+- `docs/D4/sprint-2-plan.md` — Detailed Sprint 2 backlog (28 SP, 8 tasks)
+- `docs/D4/rubric-evidence-matrix.md` — Criterion-by-criterion evidence mapping
+- `docs/D4/contribution-plan.md` — 3+ work packages each for Arnav and Keshav
+- `docs/D4/council/` — 6 council review files
+- Meeting minutes, reflections, SWOT, learning outcomes for D4
+
+### Application
+- Build verified: `mvn clean test` → 14 tests, 0 failures, BUILD SUCCESS
+- Sprint 1 stories delivered: US-01, US-02, US-03, US-07, US-12
+- All 5 D3 ADRs validated by Sprint 1 implementation
+
 ## [D3] — 2026-11-20
 
 ### Added

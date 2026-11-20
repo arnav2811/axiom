@@ -1,5 +1,19 @@
 # Change Log by Deliverable
 
+## D4 — Increment 1
+
+| Date | File/Component | Previous State | New State | Reason | Status |
+|------|----------------|---------------|-----------|--------|--------|
+| Sprint 1 | `docs/D4/d4-report.md` | Not exists | Created | D4 report with burndown, testing, design evolution | Actual |
+| Sprint 1 | `docs/D4/architecture.md` | Not exists | Created | Architecture update with 3 design refinements | Actual |
+| Sprint 1 | `docs/D4/sprint-1-review.md` | Not exists | Created | Sprint 1 review and retrospective | Actual |
+| Sprint 1 | `docs/D4/sprint-2-plan.md` | Not exists | Created | Sprint 2 backlog with reprioritisation | Actual |
+| Sprint 1 | `docs/D4/rubric-evidence-matrix.md` | Not exists | Created | D4 rubric mapping | Actual |
+| Sprint 1 | `docs/D4/contribution-plan.md` | Not exists | Created | Arnav and Keshav work packages | Actual |
+| Sprint 1 | `docs/D4/council/` (6 files) | Not exists | Created | Full council review pack | Actual |
+| Sprint 1 | Application (`New/application/`) | D3 baseline | Sprint 1 complete | 5 user stories implemented, 14 tests pass | Actual |
+| Sprint 1 | `CHANGELOG.md` | D3 entries | D4 entries added | Changelog update | Actual |
+
 ## D3 Changes
 
 | Date | File/Component | Previous State | New State | Reason | Requirement/Finding | Verification | Status | Label |
