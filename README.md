@@ -75,25 +75,37 @@ comp2300/
 
 ## Running the Application
 
+**Recommended (Maven):**
 ```bash
 cd New/application
 mvn clean javafx:run
 ```
 
-Or use the provided scripts:
-- Windows: `New/application/run-app.bat`
-- PowerShell: `New/application/run-app.ps1`
+**1-Click Launchers (from project root):**
+
+| Script | Description |
+|--------|-------------|
+| `run-app.bat` / `run-app.ps1` | Launch latest version (tries Maven first, falls back to javac) |
+| `run-d3-baseline.bat` / `.ps1` | Launch in D3 architectural baseline mode (`--d3`) |
+| `run-d5.bat` / `.ps1` | Launch in D5 Increment 2 mode (`--d5`) |
+| `run-d2.bat` / `.ps1` | Launch D2 low-fi HTML prototype |
+| `run-tests.bat` / `.ps1` | Run all tests via Maven |
+
+**From inside `New/application/`:**
+- `run-app.bat` / `run-app.ps1` — direct launch
+- `run-d3-baseline.bat` / `.ps1` — D3 mode
+- `scripts/build.ps1` — build and verify
 
 ## Running Tests
 
 ```bash
 cd New/application
-mvn clean verify
+mvn clean test
 ```
 
-Or run the headless smoke test:
-```bash
-java -cp "build/classes;build/test-classes" in.carbon.core.CoreSmoke
+Or from project root:
+```
+run-tests.bat
 ```
 
 ## AI Assistance
